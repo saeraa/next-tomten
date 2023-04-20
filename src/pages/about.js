@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section class="about">
+    <section className="about">
       <h2>Tomtens Bio, Bar & Bistro!</h2>
       <p>
         Vi är Tomtens Biograf med egen bar i Mellankalix. Den är byggd av

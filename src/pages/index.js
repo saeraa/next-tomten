@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/index.module.scss";
+import LogInModal from "@/components/logInModal/logInModal";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <div className={styles.title}>HELLO</div>
+          <LogInModal></LogInModal>
         </div>
       </main>
     </>

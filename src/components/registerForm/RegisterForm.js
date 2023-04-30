@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "@/styles/logInModal.module.scss";
 
 const RegisterForm = ({setToLogin,setToAnonymous}) => {
   return (
@@ -10,9 +10,9 @@ const RegisterForm = ({setToLogin,setToAnonymous}) => {
         <input placeholder="Email" type="email"></input>
         <input placeholder="Lösenord" type="password"></input>
         <input placeholder="Repetera lösenord" type="password"></input>
-        <button>REGISTRERA</button>
+        <button className={styles.continueButton}>REGISTRERA</button>
       </form>
-      <a onClick={setToAnonymous}>Fortsätt utan att logga in</a>
+      <a onClick={setToAnonymous} className={styles.backLink}>Fortsätt utan att logga in</a>
     </>
   );
 };

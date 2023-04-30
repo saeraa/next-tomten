@@ -1,14 +1,14 @@
-import React from 'react'
+import styles from "@/styles/logInModal.module.scss";
 
 const ForgotPasswordForm = ({setToLogin}) => {
   return (
     <>
       <h2>Glömt lösenord?</h2>
       <form>
-        <input type="email" placeholder='email'></input>
-        <button type="submit">SKICKA LÖSENORD</button>
+        <input type="email" placeholder="email"></input>
+        <button className={styles.continueButton} type="submit">SKICKA LÖSENORD</button>
       </form>
-      <a onClick={setToLogin}>Tillbaka till logga in</a>
+      <a onClick={setToLogin} className={styles.backLink}>Tillbaka till logga in</a>
     </>
   )
 }

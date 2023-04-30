@@ -1,14 +1,14 @@
-import React from 'react'
+import styles from "@/styles/logInModal.module.scss";
 
 const AnonymousUserForm = ({setToLogin}) => {
   return (
     <>
     <h2>Boka utan att logga in</h2>
     <form>
-        <input placeholder="email" type="email"></input>
-        <button type="submit">GÅ VIDARE</button>
+        <input placeholder="Emailadress" type="email"></input>
+        <button className={styles.continueButton} type="submit">GÅ VIDARE</button>
     </form>
-    <button onClick={setToLogin}>Logga in</button>
+    <a onClick={setToLogin} className={styles.backLink}>Logga in</a>
     </>
   )
 }

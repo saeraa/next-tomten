@@ -17,7 +17,7 @@
     display: inline-block;
     font-size: 1rem;
     margin: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   h2 {
     float: left;
@@ -51,7 +51,7 @@
     float: right;
     margin-top: 0.5rem;
   }
-  .logInButton {
+  .continueButton {
     background-image: linear-gradient($c-red-dark, $c-red-light);
     border-radius: 5px;
     color: $c-gray-light;
@@ -62,8 +62,9 @@
     margin-bottom: 4rem;
     padding: 0.75rem 1.25rem;
   }
-  .continueLink {
+  .backLink {
     color: $c-blue-dark;
     font-size: 1.25rem;
+    text-align: center;
   }
 }

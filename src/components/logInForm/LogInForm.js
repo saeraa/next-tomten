@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import styles from "@/styles/logInModal.module.scss";
 
 const LogInForm = () => {
   return (
@@ -9,10 +10,10 @@ const LogInForm = () => {
       <form>
         <input type="text"></input>
         <input type="password"></input>
-        <a>Glömt lösenord?</a>
-        <button type="submit">Logga in</button>
+        <a className={styles.forgotPasswordLink}>Glömt lösenord?</a>
+        <button className={styles.logInButton} type="submit">Logga in</button>
       </form>
-      <a>Fortsätt utan att logga in</a>
+      <a className={styles.continueLink}>Fortsätt utan att logga in</a>
     </>
   );
 };

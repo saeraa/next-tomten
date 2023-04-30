@@ -35,7 +35,7 @@ const LogInModal = ({ showLogInModal, handleShowLogInModal }) => {
   } else if (form === "register") {
     return (
       <div className={styles.logInModal}>
-        <RegisterForm />
+        <RegisterForm setToLogin={setToLogin} setToAnonymous={setToAnonymous}/>
       </div>
     );
   } else if (form === "password") {

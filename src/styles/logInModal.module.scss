@@ -8,7 +8,15 @@
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  max-width: 950px;
+  max-height: 700px;
   padding: 3rem 1rem;
+  @media (min-width: $bp-small) {
+    padding: 5rem 5rem;
+  }
+  @media (min-width: $bp-medium) {
+    padding: 12rem 12rem;
+  }
   input,a,form {
     display: block;
     margin: 0;
@@ -30,9 +38,6 @@
   button {
     border: none;
   }
-  form {
-  
-  }
   input {
     border: solid 0.5px $c-gray-dark;
     border-radius: 5px;
@@ -41,8 +46,8 @@
     padding: 0.5rem;
     margin-top: 1rem;
   }
-  a {
-    
+  .forgotPasswordLink, .continueButton, .backLink:hover {
+    cursor: pointer;
   }
   .forgotPasswordLink {
     color: $c-blue-dark;

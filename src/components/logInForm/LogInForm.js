@@ -8,8 +8,8 @@ const LogInForm = ({setToRegister, setToForgotPassword, setToAnonymous}) => {
       <h2>Logga in</h2>
       <h3 onClick={setToRegister}>Registrera ny användare</h3>
       <form>
-        <input placeholder="Användarnamn" type="text"></input>
-        <input placeholder="Lösenord" type="password"></input>
+        <input required placeholder="Användarnamn" type="text"></input>
+        <input required placeholder="Lösenord" type="password"></input>
         <a onClick={setToForgotPassword} className={styles.forgotPasswordLink}>Glömt lösenord?</a>
         <button className={styles.continueButton} type="submit">LOGGA IN</button>
       </form>

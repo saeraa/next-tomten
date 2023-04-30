@@ -5,7 +5,7 @@ const AnonymousUserForm = ({setToLogin}) => {
     <>
     <h2>Boka utan att logga in</h2>
     <form>
-        <input placeholder="Emailadress" type="email"></input>
+        <input required placeholder="Emailadress" type="email"></input>
         <button className={styles.continueButton} type="submit">GÅ VIDARE</button>
     </form>
     <a onClick={setToLogin} className={styles.backLink}>Logga in</a>

@@ -24,18 +24,20 @@ const LogInModal = ({ showLogInModal, handleShowLogInModal }) => {
     return null;
   } else if (form === "login") {
     return (
-      <div className={styles.logInModal}>
-        <LogInForm
-          setToRegister={setToRegister}
-          setToForgotPassword={setToForgotPassword}
-          setToAnonymous={setToAnonymous}
-        />
+      <div onClick={handleShowLogInModal} className={styles.logInModalContainer}>
+        <div onClick={(e)=>{e.stopPropagation();}} className={styles.logInModal}>
+          <LogInForm
+            setToRegister={setToRegister}
+            setToForgotPassword={setToForgotPassword}
+            setToAnonymous={setToAnonymous}
+          />
+        </div>
       </div>
     );
   } else if (form === "register") {
     return (
       <div className={styles.logInModal}>
-        <RegisterForm setToLogin={setToLogin} setToAnonymous={setToAnonymous}/>
+        <RegisterForm setToLogin={setToLogin} setToAnonymous={setToAnonymous} />
       </div>
     );
   } else if (form === "password") {
@@ -44,7 +46,7 @@ const LogInModal = ({ showLogInModal, handleShowLogInModal }) => {
         <ForgotPasswordForm setToLogin={setToLogin} />
       </div>
     );
-  } else if(form === "anonymous") {
+  } else if (form === "anonymous") {
     return (
       <div className={styles.logInModal}>
         <AnonymousUserForm setToLogin={setToLogin} />

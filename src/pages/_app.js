@@ -5,14 +5,14 @@ import Footer from "@/components/footer/footer";
 import LogInModal from "@/components/logInModal/logInModal";
 
 export default function App({ Component, pageProps }) {
-  const [showLogInModal, setShowLogInModal] = useState(true);
+  const [showLogInModal, setShowLogInModal] = useState(false);
   const handleShowLogInModal = () => {
     setShowLogInModal(!showLogInModal);
   }
   
   return (
     <>
-      <Navbar />
+      <Navbar setShowLogInModal={setShowLogInModal} />
       <LogInModal showLogInModal={showLogInModal} handleShowLogInModal={handleShowLogInModal}/>
       <Component {...pageProps} />
       <Footer />

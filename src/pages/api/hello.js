@@ -1,5 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+// Det här är ett exempel från Create Next App och hela filen bör tas bort innan vi är klara!
+
 export default function handler(req, res) {
   if (req.method === "POST") {
     // Process a POST request

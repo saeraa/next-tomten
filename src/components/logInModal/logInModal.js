@@ -5,8 +5,8 @@ import ForgotPasswordForm from "../forgotPasswordForm/ForgotPasswordForm";
 import AnonymousUserForm from "../anonymousUserForm/AnonymousUserForm";
 import styles from "@/styles/logInModal.module.scss";
 
-const LogInModal = ({ showLogInModal, handleShowLogInModal }) => {
-  const [form, setForm] = useState("login");
+const LogInModal = ({ showLogInModal, handleShowLogInModal, formToShow }) => {
+  const [form, setForm] = useState(formToShow);
   const setToRegister = () => {
     setForm("register");
   };
@@ -24,7 +24,7 @@ const LogInModal = ({ showLogInModal, handleShowLogInModal }) => {
     return null;
   } else if (form === "login") {
     return (
-      <div onClick={handleShowLogInModal} className={styles.logInModalContainer}>
+      <div data-testid="logInForm" onClick={handleShowLogInModal} className={styles.logInModalContainer}>
         <div onClick={(e)=>{e.stopPropagation();}} className={styles.logInModal}>
           <LogInForm
             setToRegister={setToRegister}
@@ -36,19 +36,19 @@ const LogInModal = ({ showLogInModal, handleShowLogInModal }) => {
     );
   } else if (form === "register") {
     return (
-      <div className={styles.logInModal}>
+      <div data-testid="registerForm" className={styles.logInModal}>
         <RegisterForm setToLogin={setToLogin} setToAnonymous={setToAnonymous} />
       </div>
     );
   } else if (form === "password") {
     return (
-      <div className={styles.logInModal}>
+      <div data-testid="passwordForm" className={styles.logInModal}>
         <ForgotPasswordForm setToLogin={setToLogin} />
       </div>
     );
   } else if (form === "anonymous") {
     return (
-      <div className={styles.logInModal}>
+      <div data-testid="anonymousForm" className={styles.logInModal}>
         <AnonymousUserForm setToLogin={setToLogin} />
       </div>
     );

@@ -8,12 +8,17 @@ export default function App({ Component, pageProps }) {
   const [showLogInModal, setShowLogInModal] = useState(false);
   const handleShowLogInModal = () => {
     setShowLogInModal(!showLogInModal);
-  }
-  
+  };
+  const [formToShow, setFormToShow] = useState("login");
+
   return (
     <>
       <Navbar setShowLogInModal={setShowLogInModal} />
-      <LogInModal showLogInModal={showLogInModal} handleShowLogInModal={handleShowLogInModal}/>
+      <LogInModal
+        showLogInModal={showLogInModal}
+        handleShowLogInModal={handleShowLogInModal}
+        formToShow={formToShow}
+      />
       <Component {...pageProps} />
       <Footer />
     </>

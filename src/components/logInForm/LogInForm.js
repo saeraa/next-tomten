@@ -11,7 +11,7 @@ const LogInForm = ({setToRegister, setToForgotPassword, setToAnonymous}) => {
         <input required placeholder="Användarnamn" type="text"></input>
         <input required placeholder="Lösenord" type="password"></input>
         <a onClick={setToForgotPassword} className={styles.forgotPasswordLink}>Glömt lösenord?</a>
-        <button className={styles.continueButton} type="submit">LOGGA IN</button>
+        <button data-testid="logInButton" className={styles.continueButton} type="submit">LOGGA IN</button>
       </form>
       <a onClick={setToAnonymous} className={styles.backLink}>Fortsätt utan att logga in</a>
     </>

@@ -6,7 +6,7 @@ const LogInForm = ({setToRegister, setToForgotPassword, setToAnonymous}) => {
   return (
     <>
       <h2>Logga in</h2>
-      <h3 onClick={setToRegister}>Registrera ny användare</h3>
+      <h3 onClick={setToRegister} className={styles.logInModalLink}>Registrera ny användare</h3>
       <form>
         <input required placeholder="Användarnamn" type="text"></input>
         <input required placeholder="Lösenord" type="password"></input>

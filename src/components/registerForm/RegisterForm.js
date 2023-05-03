@@ -3,7 +3,7 @@ import styles from "@/styles/logInModal.module.scss";
 const RegisterForm = ({setToLogin,setToAnonymous}) => {
   return (
     <>
-      <h3 onClick={setToLogin}>Logga in</h3>
+      <h3 onClick={setToLogin} className={styles.logInModalLink}>Logga in</h3>
       <h2>Registrera ny användare</h2>
       <form>
         <input required placeholder="Användarnamn" type="text"></input>

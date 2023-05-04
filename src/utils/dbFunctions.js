@@ -37,7 +37,7 @@ export async function addShowtimes(data) {
 }
 
 export async function getShowtimesForMovie(id) {
-  return await Showtime.find({ "dates.showtimes.movieIndex": id });
+  return await Showtime.find({ movieId: id });
 }
 
 // BOOKINGS

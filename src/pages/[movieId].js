@@ -8,13 +8,13 @@ export async function getServerSideProps(context) {
   const { movieId } = context.query;
   const movie = await getMovie(movieId);
 
-  console.log(await getShowtimesForMovie(movieId));
+  const showtimes = await getShowtimesForMovie(movieId);
 
   return {
     props: {
-      showdate: "2023-56-2",
-      showtime: "15:40",
-      salon: "B",
+      showtimes: JSON.parse(JSON.stringify(showtimes)).sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      ),
       length: movie.length,
       title: movie.title,
       description: movie.description,
@@ -39,11 +39,34 @@ const Movie = ({
   year,
   ageLimit,
   imageURL,
-  showdate,
-  showtime,
-  salon,
+  showtimes,
   length
 }) => {
+  const showtimesList = showtimes.map((showtime) => {
+    const date = new Date(showtime.date);
+    return (
+      <li key={showtime}>
+        {date
+          .toLocaleDateString("sv-SE", {
+            weekday: "short",
+            day: "numeric",
+            month: "short"
+          })
+          .toUpperCase()}
+        <br />{" "}
+        {date.toLocaleTimeString("sv-SE", {
+          hour: "numeric",
+          minute: "numeric"
+        })}{" "}
+        <span>
+          {showtime.salong}
+          <br /> {length} min
+        </span>
+        <button className={styles["movie-tickets"]}>Biljetter</button>
+      </li>
+    );
+  });
+
   return (
     <>
       <section className={styles["movie-details"]}>
@@ -69,17 +92,7 @@ const Movie = ({
         <div className={styles["movie-showtimes"]}>
           <hr />
           <h2>Visningstider</h2>
-          <ul className={styles["movie-showtimes-list"]}>
-            <li>
-              {showdate}
-              <br /> {showtime}{" "}
-              <span>
-                {salon}
-                <br /> {length}
-              </span>
-              <button className={styles["movie-tickets"]}>movie-tickets</button>
-            </li>
-          </ul>
+          <ul className={styles["movie-showtimes-list"]}>{showtimesList}</ul>
         </div>
 
         {/* <div className="add-review">

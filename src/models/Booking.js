@@ -14,5 +14,5 @@ const BookingSchema = new mongoose.Schema({
   paymentMethod: String
 });
 
-module.exports =
-  mongoose.models.Booking || mongoose.model("Booking", BookingSchema);
+export default mongoose.models?.Booking ||
+  mongoose.model("Booking", BookingSchema);

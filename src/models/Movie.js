@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const MovieSchema = new mongoose.Schema({
+  _id: Number,
   title: String,
   length: Number,
   description: String,
@@ -8,9 +9,14 @@ const MovieSchema = new mongoose.Schema({
   director: Array,
   genre: Array,
   imdbRating: Number,
+  poster: String,
+  country: Array,
+  age: Number,
+  image: String,
+  trailer: String,
   release: Date,
   language: String,
-  poster: String
+  subtitle: Array
 });
 
 module.exports = mongoose.models.Movie || mongoose.model("Movie", MovieSchema);

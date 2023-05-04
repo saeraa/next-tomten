@@ -19,4 +19,4 @@ const MovieSchema = new mongoose.Schema({
   subtitle: Array
 });
 
-module.exports = mongoose.models.Movie || mongoose.model("Movie", MovieSchema);
+export default mongoose.models?.Movie || mongoose.model("Movie", MovieSchema);

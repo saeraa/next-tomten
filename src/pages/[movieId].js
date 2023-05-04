@@ -1,30 +1,37 @@
-import { useRouter } from "next/router";
 import styles from "@/styles/movie.module.scss";
+import { getMovie, getShowtimesForMovie } from "@/utils/dbFunctions";
+import dbConnect from "@/utils/dbConnect";
 
 export async function getServerSideProps(context) {
+  await dbConnect();
+
+  const { movieId } = context.query;
+  const movie = await getMovie(movieId);
+
+  console.log(await getShowtimesForMovie(movieId));
+
   return {
     props: {
       showdate: "2023-56-2",
       showtime: "15:40",
       salon: "B",
-      length: 120,
-      title: "an exciting movie",
-      details: "a movie",
-      genre: "action",
-      director: "someone",
-      actors: "brad pitt",
-      country: "sudan",
-      year: "2015",
-      ageLimit: "2",
-      imageURL:
-        "https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png"
+      length: movie.length,
+      title: movie.title,
+      description: movie.description,
+      genre: movie.genre.join(", "),
+      director: movie.director.join(", "),
+      actors: movie.actors.join(", "),
+      country: movie.country,
+      year: new Date(movie.release).getFullYear(),
+      ageLimit: movie.age,
+      imageURL: movie.image
     }
   };
 }
 
 const Movie = ({
   title,
-  details,
+  description,
   genre,
   director,
   actors,
@@ -37,14 +44,12 @@ const Movie = ({
   salon,
   length
 }) => {
-  const router = useRouter();
-  const { movieId } = router.query;
   return (
     <>
       <section className={styles["movie-details"]}>
         <div>
-          <h1 className={styles["movie-title"]}>{movieId}</h1>
-          <p className={styles["movie-description"]}>{details}</p>
+          <h1 className={styles["movie-title"]}>{title}</h1>
+          <p className={styles["movie-description"]}>{description}</p>
           <hr />
           <p className={styles["movie-genres"]}>{genre}</p>
           <p className={styles["movie-info"]}>

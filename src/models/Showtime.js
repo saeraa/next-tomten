@@ -1,10 +1,14 @@
 import mongoose from "mongoose";
 
 const ShowtimeSchema = new mongoose.Schema({
-  salong: String,
-  date: Date,
-  movieId: String
+  name: String,
+  dates: [
+    {
+      date: String,
+      showtimes: [{ time: String, movieIndex: Number }]
+    }
+  ]
 });
 
-module.exports =
-  mongoose.models.Showtime || mongoose.model("Showtime", ShowtimeSchema);
+export default mongoose.models?.Showtime ||
+  mongoose.model("Showtime", ShowtimeSchema);

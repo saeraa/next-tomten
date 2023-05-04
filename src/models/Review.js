@@ -7,5 +7,5 @@ const ReviewSchema = new mongoose.Schema({
   comment: String
 });
 
-module.exports =
-  mongoose.models.Review || mongoose.model("Review", ReviewSchema);
+export default mongoose.models?.Review ||
+  mongoose.model("Review", ReviewSchema);

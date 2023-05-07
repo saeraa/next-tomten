@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import NavItem from "../navItem/navItem";
+import LoginButton from "../loginButton/LoginButton";
 import MenuDropDown from "../menuDropDown/MenuDropDown";
 import styles from "@/styles/header.module.scss";
 import logo from "../../../public/logoWithText.svg";
@@ -9,7 +10,6 @@ import facebook from "../../../public/facebook.png";
 import instagram from "../../../public/instagram.png";
 import twitter from "../../../public/twitter.png";
 import LoginButton from "../loginButton/LoginButton";
-
 
 const MENU_LIST = [
   { text: "Öppettider & Kontakt", href: "/" },
@@ -68,14 +68,7 @@ const SUB_MENU_LIST = [
   }
 ];
 
-const Navbar = ({
-  setShowLogInModal,
-  setProfileShow,
-  setIsLoggedIn,
-  setDisplayPopup,
-  setPopupTitle,
-  setPopupMessage
-}) =>
+const Navbar = ({ setShowLogInModal }) =>
 {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
@@ -160,6 +153,9 @@ const Navbar = ({
                   </div>
                 </div>
               </li>
+              <li>
+                <button className={`${styles.logInButton} ${styles.largeScreen}`} onClick={setShowLogInModal}>Logga in</button>
+              </li>
             </ul>
             <LoginButton
               setIsLoggedIn={setIsLoggedIn}
@@ -171,10 +167,13 @@ const Navbar = ({
             />
           </div>
           <button className={`${styles.logInButton} ${styles.smallScreen}`} onClick={setShowLogInModal}>Logga in</button>
-        </nav>
-      </header>
-    </>
-  );
+            </nav>
+          </header>
+          <nav className={styles.subNav}>
+            <MenuDropDown itemList={SUB_MENU_LIST} />
+          </nav>
+        </>
+        );
 };
 
-export default Navbar;
+        export default Navbar;

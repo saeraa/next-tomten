@@ -68,6 +68,7 @@
   .continueButton {
     background-image: linear-gradient($c-red-dark, $c-red-light);
     border-radius: 5px;
+    text-transform: uppercase;
     color: $c-gray-light;
     display: block;
     font-size: 1.25rem;
@@ -76,6 +77,10 @@
     margin-bottom: 4rem;
     padding: 0.75rem 1.25rem;
   }
+  .continueButton:hover {
+    background-color: $c-red-light;
+    background-image: none;
+  }
   .backLink {
     color: $c-blue-dark;
     font-size: 1.25rem;
@@ -83,5 +88,16 @@
   }
   .logInModalLink {
     cursor: pointer;
+    color: $c-blue-dark;
+    background-color: none;
+    border: none;
+    float: right;
+    opacity: 62%;
+  }
+  .screenReader {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
   }
 }

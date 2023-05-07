@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import LogInModal from "./logInModal";
-import LogInForm from "../logInForm/LogInForm";
 
 describe("LogInModal", ()=> {
     it("Renders the LogInForm on initial load", ()=> {

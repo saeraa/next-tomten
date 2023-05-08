@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import NavItem from "../navItem/navItem";
+import styles from "@/styles/navBar.module.scss";
 
 const MENU_LIST = [
   { text: "Home", href: "/" },
   { text: "About Us", href: "/about" }
 ];
 
-const Navbar = () => {
+const Navbar = ({setShowLogInModal}) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -27,6 +28,7 @@ const Navbar = () => {
             </div>
           ))}
         </div>
+        <button className={styles.logInButton} onClick={setShowLogInModal}>LOGGA IN</button>
       </nav>
     </header>
   );

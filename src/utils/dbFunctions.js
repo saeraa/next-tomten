@@ -18,6 +18,14 @@ export async function getOneUser(id) {
   return await User.findOne({ _id: id });
 }
 
+export async function getUserByUserName(userName) {
+  return await User.findOne({ userName: userName });
+}
+
+export async function getUserByEmail(email) {
+  return await User.findOne({ email: email });
+}
+
 export async function modifyUser(id, data) {
   return await User.updateOne({ _id: id }, data);
 }

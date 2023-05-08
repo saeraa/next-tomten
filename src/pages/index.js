@@ -1,7 +1,21 @@
 import Head from "next/head";
 import styles from "@/styles/index.module.scss";
+import { getMovies } from "@/utils/dbFunctions";
+import dbConnect from "@/utils/dbConnect";
+import Carousel from "@/components/carousel/carousel";
 
-export default function Home() {
+export async function getServerSideProps(context) {
+  await dbConnect();
+  const movies = await getMovies();
+
+  return {
+    props: {
+      movies: JSON.parse(JSON.stringify(movies))
+    }
+  };
+}
+
+export default function Home({ movies }) {
   return (
     <>
       <Head>
@@ -11,9 +25,35 @@ export default function Home() {
         <link type="image/svg+xml" rel="icon" href="/logo.svg" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <div className={styles.title}>HELLO</div>
-        </div>
+        <Carousel movies={movies} />
+
+        <section className={styles["current-movies"]}>
+          <h2 className={styles["current-movies-header"]}>På bion just nu</h2>
+          <ul className={styles["current-movies-list"]}>
+            {movies.map((movie) => {
+              return (
+                <a href={`movie/${movie._id}`} key={movie._id + movie.title}>
+                  <li className={styles["current-movies-card"]}>
+                    <img
+                      src={movie.image}
+                      alt={`${movie.title} Poster`}
+                      className={styles["current-movies-card-image"]}
+                    />
+                    <h3 className={styles["current-movies-card-title"]}>
+                      {movie.title}
+                    </h3>
+                  </li>
+                </a>
+              );
+            })}
+          </ul>
+        </section>
+
+        {/* <aside className="showtime">
+          <h2 className="showtime-header">VISNINGSTIDER</h2>
+          <ul className="showtime-showtimes"></ul>
+          <button className="show-more-days">VISA FLERA DAGAR</button>
+        </aside> */}
       </main>
     </>
   );

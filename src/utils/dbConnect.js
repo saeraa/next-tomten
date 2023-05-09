@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-  "mongodb+srv://tomten:fOIfEIvdQ0Z6LOhl@cluster0.inwmtz7.mongodb.net/tomtens?retryWrites=true&w=majority";
+// In production, the .env file should obviously not be in the git repo, but given this is a school project this will do :)
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 /**
  * Global is used here to maintain a cached connection across hot reloads

@@ -1,21 +1,33 @@
 import Head from "next/head";
 import styles from "@/styles/index.module.scss";
-import { getMovies } from "@/utils/dbFunctions";
+import { getMovies, getShowtimesForIndexPage } from "@/utils/dbFunctions";
 import dbConnect from "@/utils/dbConnect";
 import Carousel from "@/components/carousel/carousel";
+import ShowtimesList from "@/components/showtimesList";
 
 export async function getServerSideProps(context) {
   await dbConnect();
   const movies = await getMovies();
+  const showtimes = await getShowtimesForIndexPage();
+
+  // randomizing the movies shown in the carousel
+  const threeNumbers = new Set();
+  while (threeNumbers.size < 3) {
+    threeNumbers.add(Math.floor(Math.random() * movies.length));
+  }
+  const carouselArray = [];
+  threeNumbers.forEach((number) => carouselArray.push(movies[number]));
 
   return {
     props: {
+      carouselMovies: JSON.parse(JSON.stringify(carouselArray)),
+      showtimes: JSON.parse(JSON.stringify(showtimes)),
       movies: JSON.parse(JSON.stringify(movies))
     }
   };
 }
 
-export default function Home({ movies }) {
+export default function Home({ movies, showtimes, carouselMovies }) {
   return (
     <>
       <Head>
@@ -25,7 +37,7 @@ export default function Home({ movies }) {
         <link type="image/svg+xml" rel="icon" href="/logo.svg" />
       </Head>
       <main className={styles.main}>
-        <Carousel movies={movies} />
+        <Carousel movies={carouselMovies} />
 
         <section className={styles["current-movies"]}>
           <h2 className={styles["current-movies-header"]}>På bion just nu</h2>
@@ -49,11 +61,7 @@ export default function Home({ movies }) {
           </ul>
         </section>
 
-        {/* <aside className="showtime">
-          <h2 className="showtime-header">VISNINGSTIDER</h2>
-          <ul className="showtime-showtimes"></ul>
-          <button className="show-more-days">VISA FLERA DAGAR</button>
-        </aside> */}
+        <ShowtimesList showtimes={showtimes} />
       </main>
     </>
   );

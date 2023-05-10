@@ -4,16 +4,12 @@
   background-color: #edf2f4;
   border-radius: 5px;
   width: 70%;
-  max-width: 1000px;
-  max-height: 400px;
+  padding: 1rem;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   @media screen and (max-width: 999px) {
     width: 90%;
-  }
-  @media screen and (max-width: 500px) {
-    display: none;
   }
 }
 
@@ -26,7 +22,7 @@
   height: 20px;
   width: 20px;
   position: absolute;
-  top: 200px;
+  top: 50%;
 }
 
 .carousel-arrow-prev {
@@ -48,22 +44,36 @@
 }
 
 .carousel-item-image {
-  max-height: 400px;
   width: 100%;
-  padding: 1rem;
+  padding: 0;
   opacity: 0.8;
   position: relative;
   object-fit: cover;
   object-position: center center;
 }
 
+@keyframes slideTextUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .carousel-item-text-container {
+  @media screen and (max-width: 500px) {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
   overflow: hidden;
   animation: slideTextUp 500ms ease-in 1100ms forwards;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
   background-color: rgba($color: #edf2f4, $alpha: 0.8);
   position: absolute;
-  top: 200px;
+  top: 50%;
   z-index: 1000;
   border-radius: 10px;
   box-shadow: 0px 0px 3px $c-blue-dark;
@@ -72,6 +82,9 @@
   h3 {
     margin: 0;
     margin-bottom: 1.5rem;
+    @media screen and (max-width: 700px) {
+      margin-bottom: 0.8rem;
+    }
   }
   p {
     margin-bottom: 1rem;
@@ -80,6 +93,8 @@
     border: 1px solid black;
     padding: 0.5rem 1rem;
     border-radius: 15px;
-    margin-bottom: 1rem;
+    @media screen and (max-width: 700px) {
+      border: none;
+    }
   }
 }

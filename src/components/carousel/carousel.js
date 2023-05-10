@@ -36,10 +36,12 @@ const Carousel = ({ movies }) => {
   return (
     <CarouselProvider
       className={styles["carousel"]}
-      naturalSlideWidth={"100%"}
-      naturalSlideHeight={"100%"}
+      naturalSlideWidth={800}
+      naturalSlideHeight={400}
       totalSlides={3}
       infinite={true}
+      touchEnabled={true}
+      dragEnabled={true}
     >
       <Slider>{moviesEl}</Slider>
       <ButtonBack className={styles["carousel-arrow-prev"]}></ButtonBack>

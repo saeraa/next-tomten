@@ -1,8 +1,10 @@
-import { getUserByUserEmail } from "@/utils/tempDB";
+import dbConnect from "@/utils/dbConnect";
+import { getUserByEmail } from "@/utils/dbFunctions";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const user = await getUserByUserEmail(req.body.email);
+    await dbConnect();
+    const user = await getUserByEmail(req.body.email);
     if (user != null) {
       res
         .status(200)

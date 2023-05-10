@@ -1,10 +1,12 @@
-import { getUserByUserName } from "@/utils/tempDB";
+import dbConnect from "@/utils/dbConnect";
+import { getUserByUserName } from "@/utils/dbFunctions";
 import bcrypt from "bcryptjs";
 import { setCookie } from "cookies-next";
 import JWT from "jsonwebtoken";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
+    await dbConnect();
     const user = await getUserByUserName(req.body.userName);
     if (user == null) {
       res

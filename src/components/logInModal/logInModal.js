@@ -5,7 +5,15 @@ import ForgotPasswordForm from "../forgotPasswordForm/ForgotPasswordForm";
 import AnonymousUserForm from "../anonymousUserForm/AnonymousUserForm";
 import styles from "@/styles/logInModal.module.scss";
 
-const LogInModal = ({ showLogInModal, handleShowLogInModal, formToShow }) => {
+const LogInModal = ({
+  showLogInModal,
+  handleShowLogInModal,
+  formToShow,
+  setIsLoggedIn,
+  setDisplayPopup,
+  setPopupMessage,
+  setPopupTitle
+}) => {
   const [form, setForm] = useState(formToShow);
   const setToRegister = () => {
     setForm("register");
@@ -28,22 +36,41 @@ const LogInModal = ({ showLogInModal, handleShowLogInModal, formToShow }) => {
         setToRegister={setToRegister}
         setToForgotPassword={setToForgotPassword}
         setToAnonymous={setToAnonymous}
+        setIsLoggedIn={setIsLoggedIn}
+        setDisplayPopup={setDisplayPopup}
+        setPopupTitle={setPopupTitle}
+        setPopupMessage={setPopupMessage}
       />
     );
-  }
-
-  else if (form === "register") {
+  } else if (form === "register") {
     formToDisplay = (
-      <RegisterForm setToLogin={setToLogin} setToAnonymous={setToAnonymous} />
+      <RegisterForm
+        setToLogin={setToLogin}
+        setToAnonymous={setToAnonymous}
+        setDisplayPop={setDisplayPopup}
+        setDisplayPopup={setDisplayPopup}
+        setPopupTitle={setPopupTitle}
+        setPopupMessage={setPopupMessage}
+      />
     );
-  }
-
-  else if (form === "password") {
-    formToDisplay = <ForgotPasswordForm setToLogin={setToLogin} />;
-  }
-
-  else if (form === "anonymous") {
-    formToDisplay = <AnonymousUserForm setToLogin={setToLogin} />;
+  } else if (form === "password") {
+    formToDisplay = (
+      <ForgotPasswordForm
+        setToLogin={setToLogin}
+        setDisplayPopup={setDisplayPopup}
+        setPopupTitle={setPopupTitle}
+        setPopupMessage={setPopupMessage}
+      />
+    );
+  } else if (form === "anonymous") {
+    formToDisplay = (
+      <AnonymousUserForm
+        setToLogin={setToLogin}
+        setDisplayPopup={setDisplayPopup}
+        setPopupTitle={setPopupTitle}
+        setPopupMessage={setPopupMessage}
+      />
+    );
   }
 
   if (!showLogInModal) {

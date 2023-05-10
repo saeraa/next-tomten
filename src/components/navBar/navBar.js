@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import NavItem from "../navItem/navItem";
-import styles from "@/styles/navBar.module.scss";
+import LoginButton from "../loginButton/LoginButton";
 
 const MENU_LIST = [
   { text: "Home", href: "/" },
   { text: "About Us", href: "/about" }
 ];
 
-const Navbar = ({setShowLogInModal}) => {
+const Navbar = ({
+  setShowLogInModal,
+  setProfileShow,
+  isLoggedIn,
+  setIsLoggedIn
+}) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -28,7 +33,12 @@ const Navbar = ({setShowLogInModal}) => {
             </div>
           ))}
         </div>
-        <button className={styles.logInButton} onClick={setShowLogInModal}>LOGGA IN</button>
+        <LoginButton
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setShowLogInModal={setShowLogInModal}
+          setProfileShow={setProfileShow}
+        />
       </nav>
     </header>
   );

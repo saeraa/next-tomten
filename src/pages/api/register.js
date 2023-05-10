@@ -1,8 +1,8 @@
 import {
-  addUser,
-  getUserByEmail,
-  getUserByUserName
-} from "@/utils/dbFunctions";
+  getUserByUserEmail,
+  getUserByUserName,
+  registerUser
+} from "@/utils/tempDB";
 import bcrypt from "bcryptjs";
 
 export default async function handler(req, res) {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     );
     if (result == false) {
       req.body.password = bcrypt.hashSync(req.body.password, 10);
-      addUser(req.body);
+      registerUser(req.body);
       res.status(201).send("Ny användare skapad.");
     } else {
       res.status(406).send(JSON.stringify(result));
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
 async function isUserAlreadyRegistered(userName, email) {
   let usernameInUse = await getUserByUserName(userName);
-  let emailInUse = await getUserByEmail(email);
+  let emailInUse = await getUserByUserEmail(email);
   if ((usernameInUse == null) & (emailInUse == null)) {
     return false;
   } else {

@@ -1,6 +1,5 @@
 import styles from "@/styles/logInModal.module.scss";
 import continueAsGuest from "@/utils/anonymousUser";
-import { useRef } from "react";
 
 const AnonymousUserForm = ({
   setToLogin,
@@ -8,12 +7,10 @@ const AnonymousUserForm = ({
   setPopupTitle,
   setPopupMessage
 }) => {
-  const emailRef = useRef(null);
-
   const handleClick = async (e) => {
     e.preventDefault();
-    const email = emailRef.current.value;
-    if (await continueAsGuest(emailRef.current.value)) {
+    const email = document.querySelector("#email").value;
+    if (await continueAsGuest(email)) {
       setPopupTitle("Du bokar biljetter med e-postaddressen, " + email);
       setPopupMessage(
         "Till nästa gång kan du fundera på att skapa ett konto hos oss istället. Som medlem sparar du tid vid bokning samt får exklusiva nyheter och erbjudanden skickade till din e-post."
@@ -24,16 +21,6 @@ const AnonymousUserForm = ({
     }
     setToLogin();
     setDisplayPopup(true);
-
-    /*
-    This needs to be changed, but for simplicty and since its a school project i used verify with exposing the key.
-    const decoded = JWT.verify(getCookie("session"), "1234abcd");
-    const email = decoded.email;
-    In production,
-     Buffer.from(getCookie("session").split(".")[1],"base64").toString(); 
-     OR atob(getCookie("session")); 
-     should be used instead !
-    */
   };
   return (
     <>
@@ -43,7 +30,6 @@ const AnonymousUserForm = ({
           Emailadress
         </label>
         <input
-          ref={emailRef}
           id="email"
           name="email"
           required
@@ -52,7 +38,7 @@ const AnonymousUserForm = ({
         />
         <button
           className={styles.continueButton}
-          onClick={handleClick}
+          onClick={(e) => handleClick(e)}
           type="submit"
         >
           Gå vidare

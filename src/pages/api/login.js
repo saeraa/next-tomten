@@ -1,12 +1,10 @@
-import dbConnect from "@/utils/dbConnect";
-import { getUserByUserName } from "@/utils/dbFunctions";
+import { getUserByUserName } from "@/utils/tempDB";
 import bcrypt from "bcryptjs";
 import { setCookie } from "cookies-next";
 import JWT from "jsonwebtoken";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    await dbConnect();
     const user = await getUserByUserName(req.body.userName);
     if (user == null) {
       res
@@ -17,7 +15,10 @@ export default async function handler(req, res) {
         const sessionData = {
           userName: req.body.userName
         };
-        const signedContent = JWT.sign(sessionData, process.env.SIGN_KEY);
+        /*  const key = process.env.ENCYPTION_KEY;
+        console.log(key);
+        This needs to be changed*/
+        const signedContent = JWT.sign(sessionData, "1234abcd");
         setCookie("session", signedContent, { req, res, maxAge: 60 * 30 });
         res.status(201).send(JSON.stringify("Nu är du inloggad."));
       } else {

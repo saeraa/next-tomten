@@ -1,18 +1,13 @@
 import styles from "@/styles/navBar.module.scss";
 import logoutUser from "@/utils/logoutUser";
-import { useContext } from "react";
-import { LoggedInContext } from "@/pages/_app";
+import { getCookie } from "cookies-next";
+import JWT from "jsonwebtoken";
 
 const LoginButton = (props) => {
-  const { isLoggedIn, setIsLoggedIn, username } = useContext(LoggedInContext);
-
   const handleLogout = () => {
     if (logoutUser()) {
-      setIsLoggedIn(false);
+      props.setIsLoggedIn(false);
       props.setProfileShow(false);
-      props.setPopupTitle("Tack för denna gång!");
-      props.setPopupMessage("Hoppas att vi ses snart igen!");
-      props.setDisplayPopup(true);
     }
   };
 
@@ -29,8 +24,21 @@ const LoginButton = (props) => {
     e.target.parentNode.style.display = "none";
     props.setProfileShow(true);
   };
+  let username = "";
+  if (props.isLoggedIn) {
+    /*  const key = process.env.ENCYPTION_KEY;
+        console.log(key);
+        This needs to be changed*/
+    try {
+      const decoded = JWT.verify(getCookie("session"), "1234abcd");
+      username = decoded.userName;
+    } catch {
+      //comes here when the session is expired and when testing.
+      username = "";
+    }
+  }
 
-  return isLoggedIn ? (
+  return props.isLoggedIn ? (
     <div className={styles.logOut}>
       <button
         data-testid="loggedInButton"
@@ -38,10 +46,7 @@ const LoginButton = (props) => {
         onClick={toggleMenu}
       >
         <i className="fa fa-user-circle-o" id="user-icon"></i>
-        Inloggad som:{" "}
-        <span data-testid="username" className={styles.username}>
-          {username}
-        </span>{" "}
+        Inloggad som: <span className={styles.username}>{username}</span>{" "}
         <i className="fa fa-caret-down"></i>
       </button>
       <div className={styles.logoutContent}>
@@ -57,7 +62,7 @@ const LoginButton = (props) => {
       className={styles.logInButton}
       onClick={props.setShowLogInModal}
     >
-      LOGGA IN / REGISTRERA DIG
+      LOGGA IN
     </button>
   );
 };

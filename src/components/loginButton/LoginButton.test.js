@@ -13,10 +13,9 @@ describe("LoginButton", () => {
     expect(screen.getByTestId("loggedInButton")).toBeInTheDocument();
   });
 
-  it("Renders the text 'Inloggad som:' and the username in the button, when successfully logged in", () => {
+  it("Renders the text 'Inloggad som:' in the button when successfully logged in", () => {
     render(<LoginButton isLoggedIn={true} />);
     expect(screen.getByText("Inloggad som:")).toBeInTheDocument();
-    expect(screen.getByTestId("username")).toBeInTheDocument();
   });
 
   it("The menu (Profile & logout) is displayed when logged in", () => {

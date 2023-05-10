@@ -6,7 +6,7 @@ export default async function logoutUser() {
       "Content-Type": "application/json"
     }
   });
-  if (resp.status == 200) {
+  if (resp.status == 201) {
     return true;
   } else {
     return await resp.json();

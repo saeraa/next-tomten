@@ -7,11 +7,9 @@ const ForgotPasswordForm = ({
   setPopupTitle,
   setPopupMessage
 }) => {
-  const emailRef = useRef(null);
-
   const recoverPassword = async (e) => {
     e.preventDefault();
-    const email = emailRef.current.value;
+    const email = document.querySelector("#email").value;
     const resp = await fetch("/api/recover", {
       method: "POST",
       headers: {
@@ -39,7 +37,6 @@ const ForgotPasswordForm = ({
           email
         </label>
         <input
-          ref={emailRef}
           id="email"
           name="email"
           required
@@ -47,7 +44,7 @@ const ForgotPasswordForm = ({
           placeholder="email"
         ></input>
         <button
-          onClick={recoverPassword}
+          onClick={(e) => recoverPassword(e)}
           className={styles.continueButton}
           type="submit"
         >

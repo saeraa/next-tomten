@@ -7,13 +7,13 @@ export default function Card()
 
     function onClose()
     {
-        setShowCardModal(false);
+        setShowCardModal(!showCardModal);
 
     };
 
     return (
         <div>
-            <button onClick={() => { setShowCardModal(true) }}>+ Lägg till nytt kort</button>
+            <button onClick={onClose}>+ Lägg till nytt kort</button>
             <CardModal
                 showCardModal={showCardModal}
                 handleCloseCardModal={onClose}

@@ -1,7 +1,6 @@
 import styles from "@/styles/genericPopup.module.scss";
 
 const GenericPopup = ({
-  displayPopup,
   popupTitle,
   popupMessage,
   setDisplayPopup,
@@ -14,19 +13,28 @@ const GenericPopup = ({
       popupTitle.includes("Du bokar biljetter med e-posta")
     ) {
       setShowLogInModal(false);
+    } else if (popupTitle.includes("Din session har gått")) {
+      setShowLogInModal(true);
     }
   };
 
-  return displayPopup ? (
-    <div className={styles.popup}>
-      <h2>{popupTitle}</h2>
-      <p>{popupMessage}</p>
-      <button className="generic-button" onClick={handleClose}>
-        Okej
-      </button>
+  let smiley = false;
+  if (popupTitle.includes("Tack för denna gång")) {
+    smiley = true;
+  }
+
+  return (
+    <div onClick={handleClose} className={styles.container}>
+      <div className={styles.popup}>
+        <h2>{popupTitle}</h2>
+        <p>
+          {popupMessage} {smiley && <span>✌️</span>}
+        </p>
+        <button className="generic-button" onClick={handleClose}>
+          Okej
+        </button>
+      </div>
     </div>
-  ) : (
-    ""
   );
 };
 

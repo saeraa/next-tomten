@@ -47,7 +47,6 @@ const LogInModal = ({
       <RegisterForm
         setToLogin={setToLogin}
         setToAnonymous={setToAnonymous}
-        setDisplayPop={setDisplayPopup}
         setDisplayPopup={setDisplayPopup}
         setPopupTitle={setPopupTitle}
         setPopupMessage={setPopupMessage}

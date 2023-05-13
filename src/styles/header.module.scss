@@ -1,7 +1,6 @@
 @import "./settings/__settings";
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 @mixin hamburger-line {
     display: block;
@@ -233,14 +232,11 @@
         -webkit-transition: 1s linear;
         width: 0px;
       }
-      input.open {
-            width: 280px;
-            transition: 0.4s linear;
-      }
       i {
-        color: rgb(255, 255, 255, 0.7);
+        //color: rgb(255, 255, 255, 0.7);
         cursor: pointer;
         //font-size: 13px;
+        transition: 0.4s linear;
       }
       .searchBx2 {
         background: #161a1d15;
@@ -272,7 +268,7 @@
             top: 0px;
             width: 80px;
           }
-          .searchContent {
+          .search-content {
             color: $c-blue-dark;
             h6 {
               font-size: 13px;
@@ -325,7 +321,6 @@
           color: $c-blue-dark;
           position: absolute;
           top: -520px;
-          left: 20px;
         }
         #searchIcon {
           color: $c-yellow;
@@ -337,187 +332,3 @@
       }
     }
   }
-
-  @mixin styleListItem {
-    display: inline-block;
-    border-radius: 1.5em;
-    background-color: $c-yellow;
-    padding: 0 1em;
-    margin: 0 0.5em;
-    white-space: initial;
-    box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.2);
-  }
-  
-  @mixin styleDropdownButton {
-    cursor: pointer;
-    font-size: 1em;
-    color: $c-red-light;
-    border: none;
-    outline: none;
-    font-family: inherit;
-    background-color: inherit;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  @media (max-width: $bp-medium) {
-    nav {
-      .navList {
-        width: 80%;
-        margin-inline: auto;
-        .navListItem {
-          @include styleListItem();
-          width: 100%;
-          margin: 0.5em 0;
-          text-align: center;
-          .dropdown {
-            .dropdownButton {
-              @include styleDropdownButton();
-              padding: 0.5em 0;
-              width: 100%;
-            }
-            .dropdownContent {
-              display: none;
-  
-              label {
-                  font-weight: bold;
-              }
-  
-              a {
-                  display: block;
-                  padding-bottom: 0.5em;
-              }
-              
-              small {
-                  color: $c-red-dark;
-                  display: block;
-                  padding: 0.25em 0;
-              }
-            }
-            .show {
-              display: block;
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  @media (min-width: $bp-medium) {
-    .subNav {
-      width: 100%;
-      margin-inline: auto;
-      margin-top: 1em;
-      margin-bottom: 2em;
-  
-      .navList {
-        list-style-type: none;
-        justify-content: center;
-        align-items: center;
-        margin-inline: auto;
-        white-space: nowrap;
-        display: flex;
-  
-        .navListItem {
-          @include styleListItem();
-          &:hover {
-            background-color: #e3d582;
-            cursor: pointer;
-          }
-  
-          .dropdown {
-            float: left;
-            overflow: hidden;
-            padding: 0.5em 0;
-  
-            .dropdownButton {
-              @include styleDropdownButton();
-            }
-  
-            #dropdownSearch {
-              padding: 0.75em;
-              border: 2px solid $c-red-light;
-              border-radius: 1.5em;
-              background-color: $c-yellow;
-              label {
-                font-weight: bold;
-              }
-              small {
-                display: block;
-                color: $c-red-light;
-                padding-top: 0.25em;
-                font-style: italic;
-                text-align: center;
-              }
-            }
-  
-            .dropdownContent {
-              display: none;
-              position: absolute;
-              margin-top: 0.25em;
-              margin-left: 0.25em;
-              background-color: $c-gray-light;
-              min-width: 160px;
-              box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-              z-index: 1;
-  
-              &:hover {
-                display: block;
-              }
-  
-              a {
-                float: none;
-                color: $c-red-dark;
-                font-weight: 100;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                text-align: left;
-  
-                &:hover {
-                  font-weight: bold;
-                  background-color: $c-gray-dark;
-                }
-              }
-            }
-  
-            .show {
-              display: block;
-            }
-          }
-  
-          ul {
-            list-style-type: none;
-          }
-        }
-      }
-    }
-  }
-
-  .logInButton {
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    text-transform: uppercase;
-    font-weight: 800;
-    position: absolute;
-    right: 30px;
-    top: 90px;
-}
-
-.largeScreen {
-  display: none;
-}
-
-@media (min-width: $bp-small) {
-  .logInButton {
-    position: static;
-  }
-  .smallScreen {
-    display: none;
-  }
-  .largeScreen {
-    display: inline;
-    float: right;
-  }
-}

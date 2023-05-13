@@ -79,7 +79,7 @@ export async function getMovies() {
 }
 
 export async function getMovie(id) {
-  return await Movie.findOne({ _id: id });
+  return await Movie.findById(id);
 }
 
 export async function addMovie(data) {

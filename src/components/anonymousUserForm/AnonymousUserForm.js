@@ -21,6 +21,16 @@ const AnonymousUserForm = ({
     }
     setToLogin();
     setDisplayPopup(true);
+
+    /*
+    This needs to be changed, but for simplicty and since its a school project i used verify with exposing the key.
+    const decoded = JWT.verify(getCookie("session"), "1234abcd");
+    const email = decoded.email;
+    In production,
+     Buffer.from(getCookie("session").split(".")[1],"base64").toString(); 
+     OR atob(getCookie("session")); 
+     should be used instead !
+    */
   };
   return (
     <>

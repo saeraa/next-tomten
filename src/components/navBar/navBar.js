@@ -16,7 +16,10 @@ const Navbar = ({
   setShowLogInModal,
   setProfileShow,
   isLoggedIn,
-  setIsLoggedIn
+  setIsLoggedIn,
+  setDisplayPopup,
+  setPopupTitle,
+  setPopupMessage
 }) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
@@ -57,6 +60,9 @@ const Navbar = ({
           setIsLoggedIn={setIsLoggedIn}
           setShowLogInModal={setShowLogInModal}
           setProfileShow={setProfileShow}
+          setDisplayPopup={setDisplayPopup}
+          setPopupTitle={setPopupTitle}
+          setPopupMessage={setPopupMessage}
         />
       </nav>
     </>

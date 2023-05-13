@@ -8,6 +8,9 @@ const LoginButton = (props) => {
     if (logoutUser()) {
       props.setIsLoggedIn(false);
       props.setProfileShow(false);
+      props.setPopupTitle("Tack för denna gång!");
+      props.setPopupMessage("Hoppas att vi ses snart igen!");
+      props.setDisplayPopup(true);
     }
   };
 
@@ -26,15 +29,16 @@ const LoginButton = (props) => {
   };
   let username = "";
   if (props.isLoggedIn) {
-    /*  const key = process.env.ENCYPTION_KEY;
-        console.log(key);
-        This needs to be changed*/
     try {
+      /* This needs to be changed, but for simplicty and since its a school project i used verify with exposing the key.
+     In production,
+     Buffer.from(getCookie("session").split(".")[1],"base64").toString(); 
+     OR atob(getCookie("session")); 
+     should be used instead */
       const decoded = JWT.verify(getCookie("session"), "1234abcd");
       username = decoded.userName;
-    } catch {
-      //comes here when the session is expired and when testing.
-      username = "";
+    } catch (e) {
+      //comes here when the session is expired.
     }
   }
 
@@ -46,7 +50,10 @@ const LoginButton = (props) => {
         onClick={toggleMenu}
       >
         <i className="fa fa-user-circle-o" id="user-icon"></i>
-        Inloggad som: <span className={styles.username}>{username}</span>{" "}
+        Inloggad som:{" "}
+        <span data-testid="username" className={styles.username}>
+          {username}
+        </span>{" "}
         <i className="fa fa-caret-down"></i>
       </button>
       <div className={styles.logoutContent}>
@@ -62,7 +69,7 @@ const LoginButton = (props) => {
       className={styles.logInButton}
       onClick={props.setShowLogInModal}
     >
-      LOGGA IN
+      LOGGA IN / REGISTRERA DIG
     </button>
   );
 };

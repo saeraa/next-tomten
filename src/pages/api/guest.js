@@ -6,8 +6,7 @@ export default async function handler(req, res) {
     const sessionData = {
       email: req.body.email
     };
-    //needs to be changed before production
-    const signedContent = JWT.sign(sessionData, "1234abcd");
+    const signedContent = JWT.sign(sessionData, process.env.SIGN_KEY);
     setCookie("session", signedContent, { req, res, maxAge: 60 * 20 });
     res.status(201).send("");
   }

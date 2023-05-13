@@ -1,6 +1,6 @@
 import { getCookie } from "cookies-next";
 import JWT from "jsonwebtoken";
-
+//FAKE, NOT TO BE USED LATER
 const mockProfilePage = (props) => {
   let username;
   if (props.profileIsShown) {

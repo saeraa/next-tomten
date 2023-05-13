@@ -15,10 +15,7 @@ export default async function handler(req, res) {
         const sessionData = {
           userName: req.body.userName
         };
-        /*  const key = process.env.ENCYPTION_KEY;
-        console.log(key);
-        This needs to be changed*/
-        const signedContent = JWT.sign(sessionData, "1234abcd");
+        const signedContent = JWT.sign(sessionData, process.env.SIGN_KEY);
         setCookie("session", signedContent, { req, res, maxAge: 60 * 30 });
         res.status(201).send(JSON.stringify("Nu är du inloggad."));
       } else {

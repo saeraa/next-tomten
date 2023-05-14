@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import "@/styles/globals.scss";
 import Navbar from "@/components/navBar/navBar";
 import Footer from "@/components/footer/footer";
@@ -6,6 +6,8 @@ import LogInModal from "@/components/logInModal/logInModal";
 import MockProfilePage from "@/components/mockProfilePage";
 import GenericPopup from "@/components/genericPopup/GenericPopup";
 import { getCookie } from "cookies-next";
+
+export const LoggedInContext = createContext();
 
 export default function App({ Component, pageProps }) {
   const [showLogInModal, setShowLogInModal] = useState(false);
@@ -33,40 +35,41 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <>
-      <Navbar
-        setShowLogInModal={setShowLogInModal}
-        setProfileShow={setProfileShow}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        setDisplayPopup={setDisplayPopup}
-        setPopupTitle={setPopupTitle}
-        setPopupMessage={setPopupMessage}
-      />
-      <MockProfilePage
-        profileIsShown={profileIsShown}
-        setProfileShow={setProfileShow}
-      />
-      {displayPopup && (
-        <GenericPopup
-          popupTitle={popupTitle}
-          popupMessage={popupMessage}
+    <LoggedInContext.Provider value={isLoggedIn}>
+      <>
+        <Navbar
+          setShowLogInModal={setShowLogInModal}
+          setProfileShow={setProfileShow}
           setIsLoggedIn={setIsLoggedIn}
           setDisplayPopup={setDisplayPopup}
-          setShowLogInModal={setShowLogInModal}
+          setPopupTitle={setPopupTitle}
+          setPopupMessage={setPopupMessage}
         />
-      )}
-      <LogInModal
-        showLogInModal={showLogInModal}
-        handleShowLogInModal={handleShowLogInModal}
-        formToShow={formToShow}
-        setIsLoggedIn={setIsLoggedIn}
-        setDisplayPopup={setDisplayPopup}
-        setPopupTitle={setPopupTitle}
-        setPopupMessage={setPopupMessage}
-      />
-      <Component {...pageProps} />
-      <Footer />
-    </>
+        <MockProfilePage
+          profileIsShown={profileIsShown}
+          setProfileShow={setProfileShow}
+        />
+        {displayPopup && (
+          <GenericPopup
+            popupTitle={popupTitle}
+            popupMessage={popupMessage}
+            setIsLoggedIn={setIsLoggedIn}
+            setDisplayPopup={setDisplayPopup}
+            setShowLogInModal={setShowLogInModal}
+          />
+        )}
+        <LogInModal
+          showLogInModal={showLogInModal}
+          handleShowLogInModal={handleShowLogInModal}
+          formToShow={formToShow}
+          setIsLoggedIn={setIsLoggedIn}
+          setDisplayPopup={setDisplayPopup}
+          setPopupTitle={setPopupTitle}
+          setPopupMessage={setPopupMessage}
+        />
+        <Component {...pageProps} />
+        <Footer />
+      </>
+    </LoggedInContext.Provider>
   );
 }

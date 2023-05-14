@@ -1,5 +1,6 @@
 import styles from "@/styles/logInModal.module.scss";
 import registerUser from "@/utils/registerUser";
+import { useRef } from "react";
 
 const RegisterForm = ({
   setToLogin,
@@ -8,11 +9,15 @@ const RegisterForm = ({
   setPopupTitle,
   setPopupMessage
 }) => {
+  const usernameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
   const handleClick = async (e) => {
     e.preventDefault();
-    const username = document.querySelector("#user").value;
-    const email = document.querySelector("#email").value;
-    const password = document.querySelector("#password").value;
+    const username = usernameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
     let gotRegistered = await registerUser(username, email, password);
     if (gotRegistered == true) {
@@ -38,6 +43,7 @@ const RegisterForm = ({
           Användarnamn
         </label>
         <input
+          ref={usernameRef}
           id="user"
           name="user"
           required
@@ -48,6 +54,7 @@ const RegisterForm = ({
           Email
         </label>
         <input
+          ref={emailRef}
           id="email"
           name="email"
           required
@@ -58,6 +65,7 @@ const RegisterForm = ({
           Lösenord
         </label>
         <input
+          ref={passwordRef}
           id="password"
           name="password"
           required
@@ -74,10 +82,7 @@ const RegisterForm = ({
           placeholder="Repetera lösenord"
           type="password"
         />
-        <button
-          onClick={(e) => handleClick(e)}
-          className={styles.continueButton}
-        >
+        <button onClick={handleClick} className={styles.continueButton}>
           Registrera
         </button>
       </form>

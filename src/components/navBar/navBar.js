@@ -21,6 +21,7 @@ const Navbar = () => {
   const [activeIdx, setActiveIdx] = useState(-1);
 
   const [openNav, setOpenNav] = useState(false);
+  const [showSearchBox, setShowSearchBox] = useState(false);
 
   return (
     <header className={styles.header}>
@@ -70,15 +71,16 @@ const Navbar = () => {
               <div className={styles.searchBx}>
                 <div className={styles.search}>
                   <input
+                    className={showSearchBox ? styles.open: null}
                     type="text"
                     placeholder="Sök film..."
-                    id="search"
+                    id={styles.search}
                     data-search
                   />
-                  <i className="material-symbols-outlined" id="search-icon">
+                  <i onClick={()=> {setShowSearchBox(!showSearchBox)}} className="material-symbols-outlined" id={styles.searchIcon}>
                     search
                   </i>
-                  <div className={styles.searchBx2} id="movies-filter"></div>
+                  <div className={styles.searchBx2} id={styles.moviesFilter}></div>
                 </div>
               </div>
             </li>

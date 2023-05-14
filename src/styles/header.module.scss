@@ -233,8 +233,11 @@
         -webkit-transition: 1s linear;
         width: 0px;
       }
+      input.open {
+            width: 280px;
+      }
       i {
-        //color: rgb(255, 255, 255, 0.7);
+        color: rgb(255, 255, 255, 0.7);
         cursor: pointer;
         //font-size: 13px;
         transition: 0.4s linear;
@@ -269,7 +272,7 @@
             top: 0px;
             width: 80px;
           }
-          .search-content {
+          .searchContent {
             color: $c-blue-dark;
             h6 {
               font-size: 13px;

@@ -67,6 +67,9 @@
   
     .headerList {
       display: none;
+      .open {
+        display: block;
+      }
     }
   
     .headerList.open {
@@ -223,6 +226,7 @@
         border-radius: 20px;
         border: none;
         color: $c-blue-dark;
+        display: none;
         outline: none;
         transition: 1s linear;
         -webkit-transition: 1s linear;

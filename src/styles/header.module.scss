@@ -227,7 +227,6 @@
         border-radius: 20px;
         border: none;
         color: $c-blue-dark;
-        display: none;
         outline: none;
         transition: 1s linear;
         -webkit-transition: 1s linear;
@@ -235,12 +234,12 @@
       }
       input.open {
             width: 280px;
+            transition: 0.4s linear;
       }
       i {
         color: rgb(255, 255, 255, 0.7);
         cursor: pointer;
         //font-size: 13px;
-        transition: 0.4s linear;
       }
       .searchBx2 {
         background: #161a1d15;

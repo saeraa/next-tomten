@@ -10,7 +10,6 @@ const MENU_LIST = [
 const Navbar = ({
   setShowLogInModal,
   setProfileShow,
-  isLoggedIn,
   setIsLoggedIn,
   setDisplayPopup,
   setPopupTitle,
@@ -37,7 +36,6 @@ const Navbar = ({
           ))}
         </div>
         <LoginButton
-          isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           setShowLogInModal={setShowLogInModal}
           setProfileShow={setProfileShow}

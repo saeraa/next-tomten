@@ -1,5 +1,6 @@
 import styles from "@/styles/logInModal.module.scss";
 import continueAsGuest from "@/utils/anonymousUser";
+import { useRef } from "react";
 
 const AnonymousUserForm = ({
   setToLogin,
@@ -7,10 +8,12 @@ const AnonymousUserForm = ({
   setPopupTitle,
   setPopupMessage
 }) => {
+  const emailRef = useRef(null);
+
   const handleClick = async (e) => {
     e.preventDefault();
-    const email = document.querySelector("#email").value;
-    if (await continueAsGuest(email)) {
+    const email = emailRef.current.value;
+    if (await continueAsGuest(emailRef.current.value)) {
       setPopupTitle("Du bokar biljetter med e-postaddressen, " + email);
       setPopupMessage(
         "Till nästa gång kan du fundera på att skapa ett konto hos oss istället. Som medlem sparar du tid vid bokning samt får exklusiva nyheter och erbjudanden skickade till din e-post."
@@ -40,6 +43,7 @@ const AnonymousUserForm = ({
           Emailadress
         </label>
         <input
+          ref={emailRef}
           id="email"
           name="email"
           required
@@ -48,7 +52,7 @@ const AnonymousUserForm = ({
         />
         <button
           className={styles.continueButton}
-          onClick={(e) => handleClick(e)}
+          onClick={handleClick}
           type="submit"
         >
           Gå vidare

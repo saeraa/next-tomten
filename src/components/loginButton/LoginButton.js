@@ -2,8 +2,12 @@ import styles from "@/styles/navBar.module.scss";
 import logoutUser from "@/utils/logoutUser";
 import { getCookie } from "cookies-next";
 import JWT from "jsonwebtoken";
+import { useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 
 const LoginButton = (props) => {
+  const isOnline = useContext(LoggedInContext);
+
   const handleLogout = () => {
     if (logoutUser()) {
       props.setIsLoggedIn(false);
@@ -28,7 +32,7 @@ const LoginButton = (props) => {
     props.setProfileShow(true);
   };
   let username = "";
-  if (props.isLoggedIn) {
+  if (isOnline) {
     try {
       /* This needs to be changed, but for simplicty and since its a school project i used verify with exposing the key.
      In production,
@@ -42,7 +46,7 @@ const LoginButton = (props) => {
     }
   }
 
-  return props.isLoggedIn ? (
+  return isOnline ? (
     <div className={styles.logOut}>
       <button
         data-testid="loggedInButton"

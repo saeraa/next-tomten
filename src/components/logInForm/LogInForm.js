@@ -1,5 +1,6 @@
 import styles from "@/styles/logInModal.module.scss";
 import loginUser from "@/utils/loginUser";
+import { useRef } from "react";
 
 const LogInForm = ({
   setToRegister,
@@ -10,10 +11,12 @@ const LogInForm = ({
   setPopupTitle,
   setPopupMessage
 }) => {
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
   const clickHandler = async (e) => {
     e.preventDefault();
-    const username = document.querySelector("#user").value;
-    const password = document.querySelector("#password").value;
+    const username = usernameRef.current.value;
+    const password = passwordRef.current.value;
     let isLoggedIn = await loginUser(username, password);
     if (isLoggedIn == true) {
       setIsLoggedIn(true);
@@ -37,6 +40,7 @@ const LogInForm = ({
           Användarnamn
         </label>
         <input
+          ref={usernameRef}
           id="user"
           name="user"
           required
@@ -47,6 +51,7 @@ const LogInForm = ({
           Lösenord
         </label>
         <input
+          ref={passwordRef}
           id="password"
           name="password"
           required
@@ -58,7 +63,7 @@ const LogInForm = ({
         </a>
         <button
           data-testid="logInButton"
-          onClick={(e) => clickHandler(e)}
+          onClick={clickHandler}
           className={styles.continueButton}
           type="submit"
         >

@@ -1,4 +1,5 @@
 import styles from "@/styles/logInModal.module.scss";
+import { useRef } from "react";
 
 const ForgotPasswordForm = ({
   setToLogin,
@@ -6,9 +7,11 @@ const ForgotPasswordForm = ({
   setPopupTitle,
   setPopupMessage
 }) => {
+  const emailRef = useRef(null);
+
   const recoverPassword = async (e) => {
     e.preventDefault();
-    const email = document.querySelector("#email").value;
+    const email = emailRef.current.value;
     const resp = await fetch("/api/recover", {
       method: "POST",
       headers: {
@@ -36,6 +39,7 @@ const ForgotPasswordForm = ({
           email
         </label>
         <input
+          ref={emailRef}
           id="email"
           name="email"
           required
@@ -43,7 +47,7 @@ const ForgotPasswordForm = ({
           placeholder="email"
         ></input>
         <button
-          onClick={(e) => recoverPassword(e)}
+          onClick={recoverPassword}
           className={styles.continueButton}
           type="submit"
         >

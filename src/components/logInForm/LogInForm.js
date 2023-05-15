@@ -1,25 +1,28 @@
 import styles from "@/styles/logInModal.module.scss";
 import loginUser from "@/utils/loginUser";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 
 const LogInForm = ({
   setToRegister,
   setToForgotPassword,
   setToAnonymous,
-  setIsLoggedIn,
   setDisplayPopup,
   setPopupTitle,
   setPopupMessage
 }) => {
+  const { isLoggedIn, setIsLoggedIn, setUsername } =
+    useContext(LoggedInContext);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const clickHandler = async (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
-    let isLoggedIn = await loginUser(username, password);
-    if (isLoggedIn == true) {
+    let login = await loginUser(username, password);
+    if (login == true) {
       setIsLoggedIn(true);
+      setUsername(username);
       setPopupTitle("Nu är du inloggad");
       setPopupMessage("Välkommen tillbaka, " + username);
     } else {

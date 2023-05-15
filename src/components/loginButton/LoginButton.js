@@ -1,16 +1,14 @@
 import styles from "@/styles/navBar.module.scss";
 import logoutUser from "@/utils/logoutUser";
-import { getCookie } from "cookies-next";
-import JWT from "jsonwebtoken";
 import { useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
 
 const LoginButton = (props) => {
-  const isOnline = useContext(LoggedInContext);
+  const { isLoggedIn, setIsLoggedIn, username } = useContext(LoggedInContext);
 
   const handleLogout = () => {
     if (logoutUser()) {
-      props.setIsLoggedIn(false);
+      setIsLoggedIn(false);
       props.setProfileShow(false);
       props.setPopupTitle("Tack för denna gång!");
       props.setPopupMessage("Hoppas att vi ses snart igen!");
@@ -31,22 +29,8 @@ const LoginButton = (props) => {
     e.target.parentNode.style.display = "none";
     props.setProfileShow(true);
   };
-  let username = "";
-  if (isOnline) {
-    try {
-      /* This needs to be changed, but for simplicty and since its a school project i used verify with exposing the key.
-     In production,
-     Buffer.from(getCookie("session").split(".")[1],"base64").toString(); 
-     OR atob(getCookie("session")); 
-     should be used instead */
-      const decoded = JWT.verify(getCookie("session"), "1234abcd");
-      username = decoded.userName;
-    } catch (e) {
-      //comes here when the session is expired.
-    }
-  }
 
-  return isOnline ? (
+  return isLoggedIn ? (
     <div className={styles.logOut}>
       <button
         data-testid="loggedInButton"

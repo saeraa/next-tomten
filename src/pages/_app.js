@@ -7,7 +7,7 @@ import MockProfilePage from "@/components/mockProfilePage";
 import GenericPopup from "@/components/genericPopup/GenericPopup";
 import { getCookie } from "cookies-next";
 
-export const LoggedInContext = createContext();
+export const LoggedInContext = createContext("UserData");
 
 export default function App({ Component, pageProps }) {
   const [showLogInModal, setShowLogInModal] = useState(false);
@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }) {
   const [formToShow, setFormToShow] = useState("login");
   const [profileIsShown, setProfileShow] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
   const [displayPopup, setDisplayPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupTitle, setPopupTitle] = useState("");
@@ -35,12 +36,13 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <LoggedInContext.Provider value={isLoggedIn}>
+    <LoggedInContext.Provider
+      value={{ isLoggedIn, setIsLoggedIn, username, setUsername }}
+    >
       <>
         <Navbar
           setShowLogInModal={setShowLogInModal}
           setProfileShow={setProfileShow}
-          setIsLoggedIn={setIsLoggedIn}
           setDisplayPopup={setDisplayPopup}
           setPopupTitle={setPopupTitle}
           setPopupMessage={setPopupMessage}
@@ -53,7 +55,6 @@ export default function App({ Component, pageProps }) {
           <GenericPopup
             popupTitle={popupTitle}
             popupMessage={popupMessage}
-            setIsLoggedIn={setIsLoggedIn}
             setDisplayPopup={setDisplayPopup}
             setShowLogInModal={setShowLogInModal}
           />
@@ -62,7 +63,6 @@ export default function App({ Component, pageProps }) {
           showLogInModal={showLogInModal}
           handleShowLogInModal={handleShowLogInModal}
           formToShow={formToShow}
-          setIsLoggedIn={setIsLoggedIn}
           setDisplayPopup={setDisplayPopup}
           setPopupTitle={setPopupTitle}
           setPopupMessage={setPopupMessage}

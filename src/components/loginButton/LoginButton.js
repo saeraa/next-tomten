@@ -4,14 +4,16 @@ import { useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
 
 const LoginButton = (props) => {
-  const { isLoggedIn, setIsLoggedIn, username } = useContext(LoggedInContext);
+  const { isLoggedIn, setIsLoggedIn, username, setUsername } =
+    useContext(LoggedInContext);
 
   const handleLogout = () => {
     if (logoutUser()) {
       setIsLoggedIn(false);
       props.setProfileShow(false);
-      props.setPopupTitle("Tack för denna gång!");
+      props.setPopupTitle("Tack för denna gång, " + username + "!");
       props.setPopupMessage("Hoppas att vi ses snart igen!");
+      setUsername("");
       props.setDisplayPopup(true);
     }
   };

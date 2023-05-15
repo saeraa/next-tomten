@@ -28,7 +28,7 @@ const LogInForm = ({
     } else {
       //kommer in hit ifall användaren inte finns eller lösenordet är fel.
       setPopupTitle("Woops! Något gick fel!");
-      setPopupMessage(isLoggedIn);
+      setPopupMessage(login);
     }
     setDisplayPopup(true);
   };

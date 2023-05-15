@@ -30,6 +30,10 @@ export async function modifyUser(id, data) {
   return await User.updateOne({ _id: id }, data);
 }
 
+export async function modifyUserPaymentMethod(userName, data) {
+  return await User.updateOne({ userName: userName }, { $push: {paymentMethods: data}});
+}
+
 export async function deleteUser(id) {
   return await User.deleteOne({ _id: id });
 }

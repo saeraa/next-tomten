@@ -1,22 +1,9 @@
-import { getCookie } from "cookies-next";
-import JWT from "jsonwebtoken";
+import { useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 //FAKE, NOT TO BE USED LATER
 const mockProfilePage = (props) => {
-  let username;
-  if (props.profileIsShown) {
-    /*   const sessionData = Buffer.from(
-      getCookie("session").split(".")[1],
-      "base64"
-    ).toString();
-    let usernameString = sessionData.split(",")[0].split(":")[1];
-    username = usernameString.substring(1, usernameString.length - 1);*/
-    try {
-      const decoded = JWT.verify(getCookie("session"), "1234abcd");
-      username = decoded.userName;
-    } catch {
-      console.log("no valid token, session expired");
-    }
-  }
+  const { username } = useContext(LoggedInContext);
+
   const handleClick = () => {
     props.setProfileShow(false);
   };

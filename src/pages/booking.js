@@ -19,7 +19,7 @@ export default function Booking()
                     </h1>
                     <div className={styles["movie-head"]}>
                         <p className={styles["movie-booking"]}>Boknings information</p>
-                        <button className={styles["movie-tickets"]}>Välj annan dag</button>
+                        <button className={styles["movie-button"]}>Välj annan dag</button>
                     </div>
                     <div className={styles["info-tickets"]}>
                         <p className={styles["movie-info"]}>
@@ -52,6 +52,9 @@ export default function Booking()
                 </div>
 
                 <img src={imageURL} alt={title} className={styles["movie-poster"]} />
+                <div className={styles["next-button"]}>
+                    <button className={styles["movie-button"]}>Fortsätt med valda platser</button>
+                </div>
             </section>
 
 

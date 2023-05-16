@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
   }
-  .movie-tickets {
+  .movie-button {
     text-decoration: none;
     font-family: $font-two;
     padding: 0.5em clamp(1.8rem, 3vw, 2.5rem);
@@ -31,7 +31,7 @@
       $c-red-dark 0%,
       $c-red-light 100%
     );
-    background-size: 300px;
+    background-size: 400px;
     background-repeat: no-repeat;
     background-position: 0%;
     transition: all 300ms ease-in-out;
@@ -200,5 +200,10 @@
     max-width: 180px;
     margin-inline: auto;
     margin-top: 3rem;
+  }
+
+  .next-button {
+    margin: 20px;
+    justify-self: center;
   }
 }

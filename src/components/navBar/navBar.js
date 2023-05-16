@@ -91,6 +91,76 @@ const Navbar = () => {
         </div>
         <button className={styles.logInButton} onClick={setShowLogInModal}>LOGGA IN</button>
       </nav>
+      
+    <nav>
+    <ul className={styles.navList}>
+      
+
+      <li className={styles.navListItem}>
+        <div className={styles.dropdown}>
+          <button className={styles.dropdownButton}>
+            Serverade salonger
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div className={styles.dropdownContent} id={styles.dropdownSalonger}>
+            <a href="placeholder.html">Salong Alcatraz</a>
+            <a href="placeholder.html">Salong Bar Deco</a>
+            <a href="placeholder.html">Salong Camera</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-list-item">
+        <div class="dropdown">
+          <button class="dropdown-button">
+            Specialvisningar
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-specialvisningar">
+            <a href="placeholder.html">Klassiker</a>
+            <a href="placeholder.html">Sing Along</a>
+            <a href="placeholder.html">Den Dåliga Filmklubben</a>
+            <a href="placeholder.html">Frukostbio</a>
+            <a href="placeholder.html">Cinemateket</a>
+            <a href="placeholder.html">Nyår på Tomtens Biograf</a>
+            <a href="placeholder.html">Hollywood om Hollywood</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-list-item">
+        <div class="dropdown">
+          <button class="dropdown-button">
+            Live på bio
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-live">
+            <a href="placeholder.html">Hela programmet</a>
+            <a href="placeholder.html">Opera</a>
+            <a href="placeholder.html">Teater</a>
+            <a href="placeholder.html">Konst</a>
+            <a href="placeholder.html">Konsert</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-list-item">
+        <div class="dropdown">
+          <button class="dropdown-button">
+            Bar & Bistro
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content" id="dropdown-bar&bistro">
+            <a href="placeholder.html">Meny</a>
+            <a href="placeholder.html">Premiärfredag</a>
+            <a href="placeholder.html">Filmquiz</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+
     </header>
   );
 };

@@ -2,6 +2,7 @@ import styles from "@/styles/cardModal.module.scss";
 import { useState, useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
 
+
 async function sendCardInfo(userName, cardInfo)
 {
     const resp = await fetch('/api/users/addcard', {
@@ -15,7 +16,6 @@ async function sendCardInfo(userName, cardInfo)
             "paymentMethods": cardInfo
         })
     })
-
 }
 
 export default function CardModal2({ showCardModal, handleCloseCardModal, handleCard })
@@ -46,22 +46,24 @@ export default function CardModal2({ showCardModal, handleCloseCardModal, handle
                 }}>
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionCard}`}>
                         <label htmlFor="cardNumber">Kortnummer</label>
-                        <input id="cardNumber" type="number" name="cardNumber" value={cardInfo.cardNr} onChange={(e) => setCardInfo({ ...cardInfo, "cardNr": e.target.value })} placeholder="💳 0000 0000 0000 0000" required></input>
+                        <input id="cardNumber" type="tel" name="cardNumber" value={cardInfo.cardNr} onChange={(e) => setCardInfo({ ...cardInfo, "cardNr": e.target.value })}
+                            pattern='[\d| ]{16,22}'
+                            maxLength='19' placeholder="💳 0000 0000 0000 0000" required></input>
                     </div>
 
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}>
                         <label htmlFor="validTo">Giltig t.o.m</label>
-                        <input id="validTo" type="number" name="validTo" value={cardInfo.validTo} onChange={(e) => setCardInfo({ ...cardInfo, "validTo": e.target.value })} placeholder="📅 MM / YY" required></input>
+                        <input id="validTo" type="tel" name="validTo" value={cardInfo.validTo} onChange={(e) => setCardInfo({ ...cardInfo, "validTo": e.target.value })} pattern='\d\d/\d\d' placeholder="📅 MM / YY" required></input>
                     </div>
 
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}>
                         <label htmlFor="cvc">CVC kod</label>
-                        <input id="cvc" type="number" name="cvc" value={cardInfo.CVC} onChange={(e) => setCardInfo({ ...cardInfo, "CVC": e.target.value })} placeholder="🔒 CVC" required></input>
+                        <input id="cvc" type="number" name="cvc" value={cardInfo.CVC} onChange={(e) => setCardInfo({ ...cardInfo, "CVC": e.target.value })} placeholder="🔒 CVC" pattern='\d{3}' required></input>
                     </div>
 
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionName}`}>
                         <label htmlFor="nameOnCard">Namn på kortet</label>
-                        <input id="nameOnCard" type="text" name="nameOnCard" value={cardInfo.nameOnCard} onChange={(e) => setCardInfo({ ...cardInfo, "nameOnCard": e.target.value })} placeholder="🧟 Anna Andersson" required></input>
+                        <input id="nameOnCard" type="text" name="nameOnCard" value={cardInfo.nameOnCard} onChange={(e) => setCardInfo({ ...cardInfo, "nameOnCard": e.target.value })} placeholder="🧟 Anna Andersson" pattern='[a-z A-Z-]+' required></input>
                     </div>
 
                     <div className={styles.cardModalBottomSection}>

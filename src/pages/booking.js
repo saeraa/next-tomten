@@ -1,14 +1,27 @@
 import styles from "@/styles/booking.module.scss";
+import { useState } from "react";
 
 export default function Booking()
 {
-    // Mock data
+    // Mock data to be removed when real data is fixed
     let title = "Blade"
     let date = "2023-06-24"
     let time = "14:30"
     let salong = "Alcazar"
     let lenght = "120"
     let imageURL = "https://m.media-amazon.com/images/M/MV5BOTk2NDNjZWQtMGY0Mi00YTY2LWE5MzctMGRhZmNlYzljYTg5XkEyXkFqcGdeQXVyMTAyNjg4NjE0._V1_SX300.jpg"
+
+    const [adultPrice, setAdultPrice] = useState(150);
+    const [childPrice, setChildPrice] = useState(100);
+    const [adultTickets, setAdultTickets] = useState(0);
+    const [childTickets, setChildTickets] = useState(0);
+
+    const ticketSum = (adultPrice * adultTickets) + (childPrice * childTickets);
+
+    function checkInterval(value)
+    {
+        return (value >= 0 && value <= 30);
+    }
 
     return (
         <>
@@ -33,20 +46,20 @@ export default function Booking()
                             <span>{lenght} min</span>
                         </p>
                         <div className={styles["ticket-details"]}>
-                            <p className={styles["adult"]}>Vuxen (150kr)</p>
-                            <p className={styles["child"]}>Barn / Pensionär (100kr)</p>
+                            <p className={styles["adult"]}>Vuxen ({adultPrice}kr)</p>
+                            <p className={styles["child"]}>Barn / Pensionär ({childPrice}kr)</p>
                             <div className={styles["adult-ticket"]}>
-                                <button className={styles["add"]}>+</button>
-                                <input type="number" pattern='\d{3}' placeholder="0" />
-                                <button className={styles["sub"]}>-</button>
+                                <button className={styles["sub"]} onClick={() => setAdultTickets(checkInterval(adultTickets - 1) ? adultTickets - 1 : adultTickets)}>-</button>
+                                <input type="number" pattern='\d{2}' value={adultTickets} disabled />
+                                <button className={styles["add"]} onClick={() => setAdultTickets(checkInterval(adultTickets + 1) ? adultTickets + 1 : adultTickets)}>+</button>
                             </div>
                             <div className={styles["child-ticket"]}>
-                                <button className={styles["add"]}>+</button>
-                                <input type="number" pattern='\d{3}' placeholder="0" />
-                                <button className={styles["sub"]}>-</button>
+                                <button className={styles["sub"]} onClick={() => setChildTickets(checkInterval(childTickets - 1) ? childTickets - 1 : childTickets)}>-</button>
+                                <input type="number" pattern='\d{2}' value={childTickets} disabled />
+                                <button className={styles["add"]} onClick={() => setChildTickets(checkInterval(childTickets + 1) ? childTickets + 1 : childTickets)}>+</button>
                             </div>
                             <p className={styles["ticket-sumlabel"]}>Summa:</p>
-                            <p className={styles["ticket-sum"]}>500 kr</p>
+                            <p className={styles["ticket-sum"]}>{ticketSum} kr</p>
                         </div>
                     </div>
                 </div>

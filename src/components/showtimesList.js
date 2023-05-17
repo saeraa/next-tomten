@@ -1,7 +1,7 @@
 import ShowtimesListDay from "./showtimesListDay";
 import styles from "@/styles/asideShowTimes.module.scss";
 
-const showtimesList = ({ showtimes }) => {
+const showtimesList = ({ showtimes, movies }) => {
   return (
     <>
       <aside className={styles["showtime"]}>
@@ -9,6 +9,7 @@ const showtimesList = ({ showtimes }) => {
         <div>
           {showtimes.map((showtime) => (
             <ShowtimesListDay
+              movies={movies}
               showtime={showtime}
               key={showtime["_id"] + " " + Math.random()}
             />

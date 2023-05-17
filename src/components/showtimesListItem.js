@@ -1,11 +1,26 @@
 import Link from "next/link";
 
-const showtimesListItem = ({ showtime }) => {
+const showtimesListItem = ({ showtime, movies }) => {
   const { id, time, movieName } = showtime;
+  const movie = movies.find((movie) => movie.title === movieName);
+  const { image, length } = movie;
   return (
     <>
       <li>
-        <Link href={`/booking/${id}`}>
+        <Link
+          href={{
+            pathname: "/booking",
+            query: {
+              showtimeId: showtime["_id"],
+              showtimeSalong: showtime.salong,
+              showtimeDate: showtime.date,
+              title: movieName,
+              poster: image,
+              length: length
+            }
+          }}
+          as="/booking"
+        >
           {new Date(time).toLocaleTimeString("sv-SE", {
             hour: "numeric",
             minute: "numeric"

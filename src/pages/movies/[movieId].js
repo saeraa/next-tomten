@@ -1,12 +1,19 @@
 import styles from "@/styles/movie.module.scss";
 import { getMovie, getShowtimesForMovie } from "@/utils/dbFunctions";
 import dbConnect from "@/utils/dbConnect";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   await dbConnect();
 
   const { movieId } = context.query;
-  const movie = await getMovie(movieId);
+  const movie = (await getMovie(movieId)) ?? null;
+
+  if (!movie) {
+    return {
+      notFound: true
+    };
+  }
 
   const showtimes = await getShowtimesForMovie(movieId);
 
@@ -62,7 +69,22 @@ const Movie = ({
           {showtime.salong}
           <br /> {length} min
         </span>
-        <button className={styles["movie-tickets"]}>Biljetter</button>
+        <Link
+          href={{
+            pathname: "/booking",
+            query: {
+              showtimeId: showtime["_id"],
+              showtimeSalong: showtime.salong,
+              showtimeDate: showtime.date,
+              title: title,
+              poster: imageURL,
+              length: length
+            }
+          }}
+          as="/booking"
+        >
+          <button className={styles["movie-tickets"]}>Biljetter</button>
+        </Link>
       </li>
     );
   });

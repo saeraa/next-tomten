@@ -45,7 +45,7 @@ const Movie = ({
   const showtimesList = showtimes.map((showtime) => {
     const date = new Date(showtime.date);
     return (
-      <li key={showtime}>
+      <li key={Math.random() * 34231213}>
         {date
           .toLocaleDateString("sv-SE", {
             weekday: "short",

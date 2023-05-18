@@ -5,6 +5,7 @@ import {
   ButtonBack,
   ButtonNext
 } from "pure-react-carousel";
+import Link from "next/link";
 import styles from "../../styles/carousel.module.scss";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
@@ -19,9 +20,9 @@ const Carousel = ({ movies }) => {
         >
           <div className={styles["carousel-item-text-container"]}>
             <h3 className={styles["carousel-item-header"]}>{movie.title}</h3>
-            <a href="" className={styles["carousel-item-button"]}>
-              Biljetter
-            </a>
+            <Link href={`/movies/${movie._id}`}>
+              <span className={styles["carousel-item-button"]}>Biljetter</span>
+            </Link>
           </div>
           <img
             className={styles["carousel-item-image"]}

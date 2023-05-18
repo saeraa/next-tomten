@@ -65,7 +65,7 @@ export default function Home({ movies, showtimes, carouselMovies }) {
           </ul>
         </section>
 
-        <ShowtimesList showtimes={showtimes} />
+        <ShowtimesList showtimes={showtimes} movies={movies} />
       </main>
     </>
   );

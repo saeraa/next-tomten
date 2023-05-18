@@ -1,17 +1,14 @@
 import styles from "@/styles/logInModal.module.scss";
 import registerUser from "@/utils/registerUser";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 
-const RegisterForm = ({
-  setToLogin,
-  setToAnonymous,
-  setDisplayPopup,
-  setPopupTitle,
-  setPopupMessage
-}) => {
+const RegisterForm = ({ setToLogin, setToAnonymous }) => {
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const { setDisplayPopup, setPopupMessage, setPopupTitle } =
+    useContext(LoggedInContext);
 
   const handleClick = async (e) => {
     e.preventDefault();

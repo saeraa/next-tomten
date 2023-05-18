@@ -3,16 +3,14 @@ import loginUser from "@/utils/loginUser";
 import { useRef, useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
 
-const LogInForm = ({
-  setToRegister,
-  setToForgotPassword,
-  setToAnonymous,
-  setDisplayPopup,
-  setPopupTitle,
-  setPopupMessage
-}) => {
-  const { isLoggedIn, setIsLoggedIn, setUsername } =
-    useContext(LoggedInContext);
+const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
+  const {
+    setDisplayPopup,
+    setPopupMessage,
+    setPopupTitle,
+    setIsLoggedIn,
+    setUsername
+  } = useContext(LoggedInContext);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const clickHandler = async (e) => {

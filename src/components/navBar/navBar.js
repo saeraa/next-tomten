@@ -36,12 +36,8 @@ const Navbar = ({
           ))}
         </div>
         <LoginButton
-          setIsLoggedIn={setIsLoggedIn}
           setShowLogInModal={setShowLogInModal}
           setProfileShow={setProfileShow}
-          setDisplayPopup={setDisplayPopup}
-          setPopupTitle={setPopupTitle}
-          setPopupMessage={setPopupMessage}
         />
       </nav>
     </header>

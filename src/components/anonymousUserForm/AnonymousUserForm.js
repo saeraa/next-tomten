@@ -1,14 +1,12 @@
 import styles from "@/styles/logInModal.module.scss";
 import continueAsGuest from "@/utils/anonymousUser";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 
-const AnonymousUserForm = ({
-  setToLogin,
-  setDisplayPopup,
-  setPopupTitle,
-  setPopupMessage
-}) => {
+const AnonymousUserForm = ({ setToLogin }) => {
   const emailRef = useRef(null);
+  const { setDisplayPopup, setPopupMessage, setPopupTitle } =
+    useContext(LoggedInContext);
 
   const handleClick = async (e) => {
     e.preventDefault();

@@ -92,6 +92,7 @@ const Navbar = () => {
             openNav ? styles.open : null
           }`}
         ></button>
+        
         <nav>
           <div onClick={() => setNavActive(!navActive)}>
             <ul

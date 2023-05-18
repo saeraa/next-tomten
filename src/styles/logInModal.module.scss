@@ -1,0 +1,106 @@
+@import "./settings/__settings";
+
+.logInModalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logInModal {
+  background-color: $c-gray-light;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 950px;
+  max-height: 700px;
+  padding: 3rem 1rem;
+  @media (min-width: $bp-small) {
+    padding: 5rem 5rem;
+  }
+  @media (min-width: $bp-medium) {
+    padding: 6rem 10rem;
+    h2, .logInModalLink {
+      font-size: 1rem;
+    }
+  }
+  input,a,form {
+    display: block;
+    margin: 0;
+  }
+  h2, .logInModalLink {
+    display: inline-block;
+    font-size: 0.75rem;
+    margin: 0;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    float: left;
+    text-decoration: underline;
+  }
+  h3 {
+    float: right;
+    opacity: 62%;
+  }
+  button {
+    border: none;
+  }
+  input {
+    border: solid 0.5px $c-gray-dark;
+    border-radius: 5px;
+    color: $c-gray-dark;
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+  .forgotPasswordLink, .continueButton, .backLink:hover {
+    cursor: pointer;
+  }
+  .forgotPasswordLink {
+    color: $c-blue-dark;
+    font-size: 1rem;
+    font-weight: 400;
+    float: right;
+    margin-top: 0.5rem;
+  }
+  .continueButton {
+    background-image: linear-gradient($c-red-dark, $c-red-light);
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: $c-gray-light;
+    display: block;
+    font-size: 1.25rem;
+    margin: 0 auto;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 0.75rem 1.25rem;
+  }
+  .continueButton:hover {
+    background-color: $c-red-light;
+    background-image: none;
+  }
+  .backLink {
+    color: $c-blue-dark;
+    display: block;
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  .logInModalLink {
+    cursor: pointer;
+    color: $c-blue-dark;
+    background-color: none;
+    border: none;
+    float: right;
+    opacity: 62%;
+  }
+  .screenReader {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+}

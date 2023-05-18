@@ -8,6 +8,7 @@ import logo from "../../../public/logoWithText.svg";
 import facebook from "../../../public/facebook.png";
 import instagram from "../../../public/instagram.png";
 import twitter from "../../../public/twitter.png";
+import styles from "@/styles/navBar.module.scss";
 
 const MENU_LIST = [
   { text: "Öppettider & Kontakt", href: "/" },
@@ -66,7 +67,7 @@ const SUB_MENU_LIST = [
   }
 ];
 
-const Navbar = () => {
+const Navbar = ({setShowLogInModal}) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -150,7 +151,8 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-        </nav>
+          <button className={styles.logInButton} onClick={setShowLogInModal}>LOGGA IN</button>
+      </nav>
       </header>
       <nav className={styles.subNav}>
           <MenuDropDown itemList={SUB_MENU_LIST} />

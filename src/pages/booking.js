@@ -1,20 +1,28 @@
 import styles from "@/styles/booking.module.scss";
 import { useState } from "react";
 
-export default function Booking()
+export function getServerSideProps(context)
 {
-    // Mock data to be removed when real data is fixed
-    let title = "Blade"
-    let date = "2023-06-24"
-    let time = "14:30"
-    let salong = "Alcazar"
-    let lenght = "120"
-    let imageURL = "https://m.media-amazon.com/images/M/MV5BOTk2NDNjZWQtMGY0Mi00YTY2LWE5MzctMGRhZmNlYzljYTg5XkEyXkFqcGdeQXVyMTAyNjg4NjE0._V1_SX300.jpg"
+    return {
+        props: {
+            showtimeId: context.query.showtimeId,
+            showtimeSalong: context.query.showtimeSalong,
+            showtimedate: context.query.showtimeDate,
+            title: context.query.title,
+            poster: context.query.poster,
+            length: context.query.length
+        }
+    }
+}
 
+export default function Booking({ showtimeId, showtimeSalong, showtimedate, title, poster, length })
+{
     const [adultPrice, setAdultPrice] = useState(150);
     const [childPrice, setChildPrice] = useState(100);
     const [adultTickets, setAdultTickets] = useState(0);
     const [childTickets, setChildTickets] = useState(0);
+
+    const showtimeDate = new Date(showtimedate);
 
     const ticketSum = (adultPrice * adultTickets) + (childPrice * childTickets);
 
@@ -37,13 +45,21 @@ export default function Booking()
                     <div className={styles["info-tickets"]}>
                         <p className={styles["movie-info"]}>
                             <strong>Datum: </strong>{" "}
-                            <span>{date}</span>
+                            <span>{showtimeDate.toLocaleDateString("sv-SE", {
+                                weekday: "short",
+                                day: "numeric",
+                                month: "short"
+                            }).toUpperCase()}
+                            </span>
                             <strong>Tid: </strong>
-                            <span>{time}</span>{" "}
+                            <span>{showtimeDate.toLocaleTimeString("sv-SE", {
+                                hour: "numeric",
+                                minute: "numeric"
+                            })}</span>
                             <strong>Salong: </strong>
-                            <span>{salong}</span>
+                            <span>{showtimeSalong}</span>
                             <strong>Spel tid: </strong>{" "}
-                            <span>{lenght} min</span>
+                            <span>{length} min</span>
                         </p>
                         <div className={styles["ticket-details"]}>
                             <p className={styles["adult"]}>Vuxen ({adultPrice}kr)</p>
@@ -64,14 +80,11 @@ export default function Booking()
                     </div>
                 </div>
 
-                <img src={imageURL} alt={title} className={styles["movie-poster"]} />
+                <img src={poster} alt={title} className={styles["movie-poster"]} />
                 <div className={styles["next-button"]}>
                     <button className={styles["movie-button"]}>Fortsätt med valda platser</button>
                 </div>
             </section>
-
-
-
         </>
     );
 };

@@ -4,7 +4,7 @@ import { LoggedInContext } from "@/pages/_app";
 
 const ForgotPasswordForm = ({ setToLogin }) => {
   const emailRef = useRef(null);
-  const { setDisplayPopup, setPopupTitle, setPopupMessage } =
+  const { setDisplayPopup, setPopupMessage, setPopupTitle } =
     useContext(LoggedInContext);
 
   const recoverPassword = async (e) => {

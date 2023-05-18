@@ -7,7 +7,7 @@ const RegisterForm = ({ setToLogin, setToAnonymous }) => {
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const { setDisplayPopup, setPopupTitle, setPopupMessage } =
+  const { setDisplayPopup, setPopupMessage, setPopupTitle } =
     useContext(LoggedInContext);
 
   const handleClick = async (e) => {

@@ -43,8 +43,8 @@ export default function App({ Component, pageProps }) {
         username,
         setUsername,
         setDisplayPopup,
-        setPopupMessage,
-        setPopupTitle
+        setPopupTitle,
+        setPopupMessage
       }}
     >
       <>

@@ -5,11 +5,11 @@ import { LoggedInContext } from "@/pages/_app";
 
 const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
   const {
-    setIsLoggedIn,
-    setUsername,
     setDisplayPopup,
+    setPopupMessage,
     setPopupTitle,
-    setPopupMessage
+    setIsLoggedIn,
+    setUsername
   } = useContext(LoggedInContext);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);

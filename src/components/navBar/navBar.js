@@ -148,9 +148,13 @@ const Navbar = () => {
                   </div>
                 </div>
               </li>
+              <li>
+              <button className={`${styles.logInButton} ${styles.largeScreen}`} onClick={setShowLogInModal}>Logga in</button>
+              </li>
             </ul>
           </div>
-        </nav>
+          <button className={`${styles.logInButton} ${styles.smallScreen}`} onClick={setShowLogInModal}>Logga in</button>
+      </nav>
       </header>
       <nav className={styles.subNav}>
           <MenuDropDown itemList={SUB_MENU_LIST} />

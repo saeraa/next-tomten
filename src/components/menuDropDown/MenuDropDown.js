@@ -1,12 +1,21 @@
+import { useState } from "react";
 import DropDownItem from "../dropDownItem/DropDownItem";
 import styles from "@/styles/header.module.scss";
 
 const MenuDropDown = ({ itemList }) => {
-  console.log(itemList);
+  const [showDropDown, setShowDropDown] = useState();
   return (
     <ul className={styles.navList}>
-      {itemList.map((item) => {
-        return <DropDownItem text={item.text} content={item.content} />;
+      {itemList.map((item, idx) => {
+        return (
+          <DropDownItem
+            idx={idx}
+            showDropDown={showDropDown}
+            setShowDropDown={setShowDropDown}
+            text={item.text}
+            content={item.content}
+          />
+        );
       })}
     </ul>
   );

@@ -20,7 +20,7 @@ export const Review = (props) => {
         <label className={styles.ratingLabel}> Betyg:</label>
         <div className={styles.ratingHats}>{ratingToReturn}</div>
       </div>
-      <p>{props.comment}</p>
+      {!(props.comment == "") && <p>{props.comment}</p>}
     </div>
   );
 };

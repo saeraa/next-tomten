@@ -1,7 +1,6 @@
 export default async function loginUser(userName, password) {
   const resp = await fetch("/api/login", {
     method: "POST",
-    credentials: "include",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"

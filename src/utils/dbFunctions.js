@@ -126,6 +126,10 @@ export async function getReviews() {
   return await Review.find();
 }
 
+export async function getUserReviewsForMovie(id, user) {
+  return await Review.find({ movieId: id, author: user });
+}
+
 export async function addReview(data) {
   return await Review.create(data);
 }

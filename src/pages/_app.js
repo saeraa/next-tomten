@@ -37,15 +37,20 @@ export default function App({ Component, pageProps }) {
 
   return (
     <LoggedInContext.Provider
-      value={{ isLoggedIn, setIsLoggedIn, username, setUsername }}
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        username,
+        setUsername,
+        setDisplayPopup,
+        setPopupMessage,
+        setPopupTitle
+      }}
     >
       <>
         <Navbar
           setShowLogInModal={setShowLogInModal}
           setProfileShow={setProfileShow}
-          setDisplayPopup={setDisplayPopup}
-          setPopupTitle={setPopupTitle}
-          setPopupMessage={setPopupMessage}
         />
         <MockProfilePage
           profileIsShown={profileIsShown}
@@ -63,9 +68,6 @@ export default function App({ Component, pageProps }) {
           showLogInModal={showLogInModal}
           handleShowLogInModal={handleShowLogInModal}
           formToShow={formToShow}
-          setDisplayPopup={setDisplayPopup}
-          setPopupTitle={setPopupTitle}
-          setPopupMessage={setPopupMessage}
         />
         <Component {...pageProps} />
         <Footer />

@@ -1,13 +1,11 @@
 import styles from "@/styles/logInModal.module.scss";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 
-const ForgotPasswordForm = ({
-  setToLogin,
-  setDisplayPopup,
-  setPopupTitle,
-  setPopupMessage
-}) => {
+const ForgotPasswordForm = ({ setToLogin }) => {
   const emailRef = useRef(null);
+  const { setDisplayPopup, setPopupTitle, setPopupMessage } =
+    useContext(LoggedInContext);
 
   const recoverPassword = async (e) => {
     e.preventDefault();

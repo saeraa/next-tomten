@@ -1,0 +1,209 @@
+@import "./settings/__settings";
+
+@mixin button-style {
+  cursor: pointer;
+  background-color: $c-yellow;
+  color: $c-red-light;
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 2em;
+  font-weight: bold;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  &:hover {
+    background-color: #cbbd79;
+  }
+}
+
+.loginFirst {
+  margin-top: 1em;
+  font-style: italic;
+  text-align: center;
+  span {
+    font-weight: bold;
+  }
+}
+
+.review {
+  width: fit-content;
+  margin-inline: auto;
+  .writeReviewButton {
+    @include button-style;
+  }
+
+  .reviewPopupContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 98vw;
+    height: 100vh;
+    .reviewPopup {
+      position: absolute;
+      background-color: $c-gray-light;
+      width: 50vw;
+      height: fit-content;
+      text-align: center;
+      padding-top: 3em;
+      padding-bottom: 3em;
+      top: 20%;
+      left: 25%;
+      @media (max-width: $bp-medium) {
+        left: 0;
+        right: 0;
+        top: 5%;
+        width: 90vw;
+        height: 70vh;
+        margin-inline: auto;
+      }
+      #closeIcon {
+        font-size: 1.5em;
+        color: $c-red-light;
+        position: absolute;
+        top: 1.25em;
+        right: 1.25em;
+        @media (min-width: $bp-medium) {
+          &:hover {
+            cursor: pointer;
+            color: $c-red-dark;
+          }
+        }
+      }
+      h2 {
+        span {
+          color: $c-red-light;
+        }
+      }
+      button {
+        @include button-style;
+        display: block;
+        margin-top: 2em;
+        margin-inline: auto;
+      }
+      #commentLabel {
+        margin-top: 1em;
+        display: block;
+        font-weight: bold;
+      }
+      textarea {
+        margin-top: 0.5em;
+        width: 75%;
+        margin-inline: auto;
+      }
+      .ratingContainer {
+        display: flex;
+        justify-content: center;
+        label {
+          font-weight: bold;
+        }
+        .postReviewRating {
+          display: flex;
+          padding-left: 0.5em;
+          input {
+            display: none;
+          }
+
+          label {
+            display: inline-block;
+            background-size: 100%;
+            width: 25px;
+            height: 25px;
+            background-image: url("../../public/review/hat-nofill.png");
+
+            &:hover {
+              cursor: pointer;
+              background-image: url("../../public/review/hat-fill.png");
+            }
+          }
+
+          /* label:not(:first-child) {
+            background-size: 100%;
+            background-image: url("../../public/review/hat-nofill.png");
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            position: relative;
+            &:hover {
+              cursor: pointer;
+              background-image: url("../../public/review/hat-fill.png");
+            }
+            &:hover ~ label {
+              background-image: url("../../public/review/hat-fill.png");
+            }
+          }*/
+        }
+        .hatFilled {
+          background-image: url("../../public/review/hat-fill.png") !important;
+        }
+
+        .hatUnfilled {
+          background-image: url("../../public/review/hat-nofill.png") !important;
+        }
+      }
+    }
+  }
+}
+
+.noReviews {
+  font-size: 1.5em;
+  font-style: italic;
+  span {
+    font-weight: bold;
+  }
+}
+
+.reviewsContainer {
+  .displayReview {
+    //background-color: $c-gray-light;
+    text-align: left;
+    padding: 1em 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    .author {
+      font-weight: bold;
+      font-size: 1.15em;
+    }
+    label {
+      font-weight: bold;
+      color: $c-red-dark;
+    }
+    .rating {
+      .ratingHats {
+        padding-left: 0.5em;
+        margin-top: 0.25em;
+        display: inline-block;
+        .hatFilled,
+        .hatUnfilled {
+          display: inline-block;
+          background-size: 100%;
+          width: 25px;
+          height: 25px;
+        }
+        .hatFilled {
+          background-image: url("../../public/review/hat-fill.png") !important;
+        }
+
+        .hatUnfilled {
+          background-image: url("../../public/review/hat-nofill.png") !important;
+        }
+      }
+    }
+    p {
+      width: fit-content;
+      padding: 0.25em 3em;
+      position: relative;
+      top: 0.4em;
+      text-align: left;
+      font-style: italic;
+      margin: 0;
+      color: $c-red-dark;
+      background-color: $c-gray-light;
+      font-size: 1.25em;
+      border-radius: 2em;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+}

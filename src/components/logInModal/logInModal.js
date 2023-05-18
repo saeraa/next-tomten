@@ -5,15 +5,7 @@ import ForgotPasswordForm from "../forgotPasswordForm/ForgotPasswordForm";
 import AnonymousUserForm from "../anonymousUserForm/AnonymousUserForm";
 import styles from "@/styles/logInModal.module.scss";
 
-const LogInModal = ({
-  showLogInModal,
-  handleShowLogInModal,
-  formToShow,
-  setIsLoggedIn,
-  setDisplayPopup,
-  setPopupMessage,
-  setPopupTitle
-}) => {
+const LogInModal = ({ showLogInModal, handleShowLogInModal, formToShow }) => {
   const [form, setForm] = useState(formToShow);
   const setToRegister = () => {
     setForm("register");
@@ -36,39 +28,16 @@ const LogInModal = ({
         setToRegister={setToRegister}
         setToForgotPassword={setToForgotPassword}
         setToAnonymous={setToAnonymous}
-        setDisplayPopup={setDisplayPopup}
-        setPopupTitle={setPopupTitle}
-        setPopupMessage={setPopupMessage}
       />
     );
   } else if (form === "register") {
     formToDisplay = (
-      <RegisterForm
-        setToLogin={setToLogin}
-        setToAnonymous={setToAnonymous}
-        setDisplayPopup={setDisplayPopup}
-        setPopupTitle={setPopupTitle}
-        setPopupMessage={setPopupMessage}
-      />
+      <RegisterForm setToLogin={setToLogin} setToAnonymous={setToAnonymous} />
     );
   } else if (form === "password") {
-    formToDisplay = (
-      <ForgotPasswordForm
-        setToLogin={setToLogin}
-        setDisplayPopup={setDisplayPopup}
-        setPopupTitle={setPopupTitle}
-        setPopupMessage={setPopupMessage}
-      />
-    );
+    formToDisplay = <ForgotPasswordForm setToLogin={setToLogin} />;
   } else if (form === "anonymous") {
-    formToDisplay = (
-      <AnonymousUserForm
-        setToLogin={setToLogin}
-        setDisplayPopup={setDisplayPopup}
-        setPopupTitle={setPopupTitle}
-        setPopupMessage={setPopupMessage}
-      />
-    );
+    formToDisplay = <AnonymousUserForm setToLogin={setToLogin} />;
   }
 
   if (!showLogInModal) {

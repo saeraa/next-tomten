@@ -4,6 +4,7 @@ import { getMovies, getShowtimesForIndexPage } from "@/utils/dbFunctions";
 import dbConnect from "@/utils/dbConnect";
 import Carousel from "@/components/carousel/carousel";
 import ShowtimesList from "@/components/showtimesList";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   await dbConnect();
@@ -44,7 +45,10 @@ export default function Home({ movies, showtimes, carouselMovies }) {
           <ul className={styles["current-movies-list"]}>
             {movies.map((movie) => {
               return (
-                <a href={`movie/${movie._id}`} key={movie._id + movie.title}>
+                <Link
+                  href={`movies/${movie._id}`}
+                  key={movie._id + movie.title}
+                >
                   <li className={styles["current-movies-card"]}>
                     <img
                       src={movie.image}
@@ -55,7 +59,7 @@ export default function Home({ movies, showtimes, carouselMovies }) {
                       {movie.title}
                     </h3>
                   </li>
-                </a>
+                </Link>
               );
             })}
           </ul>

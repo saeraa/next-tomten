@@ -1,20 +1,15 @@
+import DropDownItem from "../dropDownItem/DropDownItem";
+import styles from "@/styles/header.module.scss";
 
-const MenuDropDown = () => {
+const MenuDropDown = ({ itemList }) => {
+  console.log(itemList);
   return (
-    <li className={styles.navListItem}>
-        <div className={styles.dropdown}>
-          <button className={styles.dropdownButton}>
-            Repertoar
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div className={styles.dropDownContent} id={styles.dropdownRepertoar}>
-            <a href="placeholder.html">Hela bioprogrammet</a>
-            <a href="comingPremieres.html">Kommande premiärer</a>
-            <a href="placeholder.html">Erbjudande på matinéfilm</a>
-          </div>
-        </div>
-      </li>
-  )
-}
+    <ul className={styles.navList}>
+      {itemList.map((item) => {
+        return <DropDownItem text={item.text} content={item.content} />;
+      })}
+    </ul>
+  );
+};
 
 export default MenuDropDown;

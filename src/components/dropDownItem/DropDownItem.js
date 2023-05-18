@@ -25,11 +25,11 @@ const DropDownItem = ({
       <div className={styles.dropdown}>
         <button className={styles.dropdownButton}>
           {text}
-          <i class="fa fa-caret-down"></i>
+          <i className="fa fa-caret-down"></i>
         </button>
         <div className={`${styles.dropdownContent} ${showDropDown === idx ? styles.show : null}`}>
           {content.map((item) => {
-            return <Link href={item.href}>{item.text}</Link>;
+            return <Link key={Math.random() * 13377331} href={item.href}>{item.text}</Link>;
           })}
         </div>
       </div>

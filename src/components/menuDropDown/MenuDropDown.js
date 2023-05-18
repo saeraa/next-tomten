@@ -9,6 +9,7 @@ const MenuDropDown = ({ itemList }) => {
       {itemList.map((item, idx) => {
         return (
           <DropDownItem
+            key={Math.random() * 13377331}
             idx={idx}
             showDropDown={showDropDown}
             setShowDropDown={setShowDropDown}

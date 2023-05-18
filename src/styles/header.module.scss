@@ -362,10 +362,10 @@
   
   @media (max-width: $bp-medium) {
     nav {
-      .nav-list {
+      .navList {
         width: 80%;
         margin-inline: auto;
-        .nav-list-item {
+        .navListItem {
           @include styleListItem();
           width: 100%;
           margin: 0.5em 0;

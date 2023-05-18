@@ -494,3 +494,31 @@
       }
     }
   }
+
+  .logInButton {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-weight: 800;
+    position: absolute;
+    right: 30px;
+    top: 90px;
+}
+
+.largeScreen {
+  display: none;
+}
+
+@media (min-width: $bp-small) {
+  .logInButton {
+    position: static;
+  }
+  .smallScreen {
+    display: none;
+  }
+  .largeScreen {
+    display: inline;
+    float: right;
+  }
+}

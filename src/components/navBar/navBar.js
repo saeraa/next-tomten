@@ -103,6 +103,7 @@ const Navbar = () => {
                   onClick={() => {
                     setActiveIdx(idx);
                     setNavActive(false);
+                    setOpenNav(false);
                   }}
                   key={menu.text}
                 >

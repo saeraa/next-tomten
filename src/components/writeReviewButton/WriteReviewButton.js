@@ -61,7 +61,6 @@ const WriteReviewButton = (props) => {
       comment: commentRef.current.value,
       movieId: window.location.pathname.split("/")[2]
     };
-    console.log(getCookie("session"));
     const resp = await fetch("/api/reviews", {
       method: "POST",
       headers: {

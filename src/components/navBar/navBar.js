@@ -8,7 +8,7 @@ import logo from "../../../public/logoWithText.svg";
 import facebook from "../../../public/facebook.png";
 import instagram from "../../../public/instagram.png";
 import twitter from "../../../public/twitter.png";
-import styles from "@/styles/navBar.module.scss";
+
 
 const MENU_LIST = [
   { text: "Öppettider & Kontakt", href: "/" },
@@ -149,9 +149,12 @@ const Navbar = ({setShowLogInModal}) => {
                   </div>
                 </div>
               </li>
+              <li>
+              <button className={`${styles.logInButton} ${styles.largeScreen}`} onClick={setShowLogInModal}>Logga in</button>
+              </li>
             </ul>
           </div>
-          <button className={styles.logInButton} onClick={setShowLogInModal}>LOGGA IN</button>
+          <button className={`${styles.logInButton} ${styles.smallScreen}`} onClick={setShowLogInModal}>Logga in</button>
       </nav>
       </header>
       <nav className={styles.subNav}>

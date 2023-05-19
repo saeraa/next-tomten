@@ -42,7 +42,7 @@
     width: 98vw;
     height: 100vh;
     .reviewPopup {
-      position: absolute;
+      position: fixed;
       background-color: $c-gray-light;
       width: 50vw;
       height: fit-content;

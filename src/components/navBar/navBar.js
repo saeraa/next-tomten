@@ -19,7 +19,7 @@ const Navbar = ({
   setIsLoggedIn,
   setDisplayPopup,
   setPopupTitle,
-  </>  setPopupMessage
+  setPopupMessage
 }) =>
 {
   const [navActive, setNavActive] = useState(null);
@@ -40,12 +40,12 @@ const Navbar = ({
           />
         </Link>
         <button
-          onClick={() => {
+          onClick={() =>
+          {
             setOpenNav(!openNav);
           }}
-          className={`${styles.headerListToggle} ${
-            openNav ? styles.open : null
-          }`}
+          className={`${styles.headerListToggle} ${openNav ? styles.open : null
+            }`}
         ></button>
         <nav>
           <div onClick={() => setNavActive(!navActive)}>
@@ -121,4 +121,4 @@ const Navbar = ({
   );
 };
 
-        export default Navbar;
+export default Navbar;

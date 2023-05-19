@@ -3,6 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import NavItem from "../navItem/navItem";
 import LoginButton from "../loginButton/LoginButton";
+import MenuDropDown from "../menuDropDown/MenuDropDown";
+import styles from "@/styles/header.module.scss";
+import logo from "../../../public/logoWithText.svg";
+import facebook from "../../../public/facebook.png";
+import instagram from "../../../public/instagram.png";
+import twitter from "../../../public/twitter.png";
 
 const MENU_LIST = [
   { text: "Öppettider & Kontakt", href: "/" },

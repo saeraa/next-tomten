@@ -2,140 +2,162 @@ import styles from "@/styles/cardModal.module.scss";
 import { useState, useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
 
-
-async function sendCardInfo(userName, cardInfo)
-{
-    const resp = await fetch('/api/users/addcard', {
-        "method": "PATCH",
-        "headers": {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        "body": JSON.stringify({
-            "userName": userName,
-            "paymentMethods": cardInfo
-        })
+async function sendCardInfo(userName, cardInfo) {
+  const resp = await fetch("/api/users/addcard", {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      userName: userName,
+      paymentMethods: cardInfo
     })
-    const data = await resp.json();
+  });
+  const data = await resp.json();
 
-    return data;
+  return data.success;
 }
 
+export default function CardModal2({
+  showCardModal,
+  handleCloseCardModal,
+  handleCard
+}) {
+  const [cardInfo, setCardInfo] = useState({
+    cardNr: "",
+    validTo: "",
+    CVC: "",
+    nameOnCard: ""
+  });
+  const {
+    isLoggedIn,
+    setIsLoggedIn,
+    username,
+    setUsername,
+    setDisplayPopup,
+    setPopupTitle,
+    setPopupMessage
+  } = useContext(LoggedInContext);
 
+  if (!showCardModal) return null;
 
-export default function CardModal2({ showCardModal, handleCloseCardModal, handleCard })
-{
-    const [cardInfo, setCardInfo] = useState({ "cardNr": '', "validTo": '', "CVC": '', "nameOnCard": '' })
-    const {
-        isLoggedIn,
-        setIsLoggedIn,
-        username,
-        setUsername,
-        setDisplayPopup,
-        setPopupTitle,
-        setPopupMessage
-    } = useContext(LoggedInContext);
+  return (
+    <>
+      <div className={styles.cardModalOverlay} onClick={handleCloseCardModal} />
 
-    if (!showCardModal)
-        return null;
+      <div className={styles.cardModalContainer}>
+        <button
+          className={styles.closeBtn}
+          onClick={handleCloseCardModal}
+          aria-label="Stäng modalen knapp"
+        >
+          X
+        </button>
 
-    return (
-        <>
-            <div className={styles.cardModalOverlay} onClick={handleCloseCardModal} />
+        <form
+          className={styles.cardModalForm}
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            handleCard(cardInfo);
 
-            <div className={styles.cardModalContainer}>
-                <button
-                    className={styles.closeBtn}
-                    onClick={handleCloseCardModal}
-                    aria-label="Stäng modalen knapp"
-                >X</button>
+            if (isLoggedIn) {
+              const resp = sendCardInfo(username, cardInfo);
+              if (resp) {
+                setPopupTitle("Kort");
+                setPopupMessage("Ditt kort är tillagt!");
+                setDisplayPopup(true);
+              } else {
+                setPopupTitle("Kort");
+                setPopupMessage("Det blev fel, försök igen!");
+                setDisplayPopup(true);
+              }
+            }
 
-                <form className={styles.cardModalForm} onSubmit={(ev) =>
-                {
-                    ev.preventDefault();
-                    handleCard(cardInfo);
+            handleCloseCardModal();
+          }}
+        >
+          <div
+            className={`${styles.cardModalSections} ${styles.cardModalSectionCard}`}
+          >
+            <label htmlFor="cardNumber">Kortnummer</label>
+            <input
+              id="cardNumber"
+              type="tel"
+              name="cardNumber"
+              value={cardInfo.cardNr}
+              onChange={(e) =>
+                setCardInfo({ ...cardInfo, cardNr: e.target.value })
+              }
+              pattern="[\d| ]{16,22}"
+              maxLength="19"
+              placeholder="💳 0000 0000 0000 0000"
+              required
+            ></input>
+          </div>
 
-                    if (isLoggedIn)
-                    {
-                        const resp = sendCardInfo(username, cardInfo);
-                        if (resp)
-                        {
-                            setPopupTitle("Kort");
-                            setPopupMessage("Ditt kort är tillagt!");
-                            setDisplayPopup(true);
-                        } else
-                        {
-                            setPopupTitle("Kort");
-                            setPopupMessage("Det blev fel, försök igen!");
-                            setDisplayPopup(true)
-                        }
-                    }
+          <div
+            className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}
+          >
+            <label htmlFor="validTo">Giltig t.o.m</label>
+            <input
+              id="validTo"
+              type="tel"
+              name="validTo"
+              value={cardInfo.validTo}
+              onChange={(e) =>
+                setCardInfo({ ...cardInfo, validTo: e.target.value })
+              }
+              pattern="\d\d/\d\d"
+              placeholder="📅 MM / YY"
+              required
+            ></input>
+          </div>
 
+          <div
+            className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}
+          >
+            <label htmlFor="cvc">CVC kod</label>
+            <input
+              id="cvc"
+              type="number"
+              name="cvc"
+              value={cardInfo.CVC}
+              onChange={(e) =>
+                setCardInfo({ ...cardInfo, CVC: e.target.value })
+              }
+              placeholder="🔒 CVC"
+              pattern="\d{3}"
+              required
+            ></input>
+          </div>
 
-                    handleCloseCardModal();
-                }}>
-                    <div className={`${styles.cardModalSections} ${styles.cardModalSectionCard}`}>
-                        <label htmlFor="cardNumber">Kortnummer</label>
-                        <input
-                            id="cardNumber"
-                            type="tel"
-                            name="cardNumber"
-                            value={cardInfo.cardNr}
-                            onChange={(e) => setCardInfo({ ...cardInfo, "cardNr": e.target.value })}
-                            pattern='[\d| ]{16,22}'
-                            maxLength='19' placeholder="💳 0000 0000 0000 0000"
-                            required
-                        ></input>
-                    </div>
+          <div
+            className={`${styles.cardModalSections} ${styles.cardModalSectionName}`}
+          >
+            <label htmlFor="nameOnCard">Namn på kortet</label>
+            <input
+              id="nameOnCard"
+              type="text"
+              name="nameOnCard"
+              value={cardInfo.nameOnCard}
+              onChange={(e) =>
+                setCardInfo({ ...cardInfo, nameOnCard: e.target.value })
+              }
+              placeholder="🧟 Anna Andersson"
+              pattern="[a-z A-Z-]+"
+              required
+            ></input>
+          </div>
 
-                    <div className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}>
-                        <label htmlFor="validTo">Giltig t.o.m</label>
-                        <input
-                            id="validTo"
-                            type="tel"
-                            name="validTo"
-                            value={cardInfo.validTo}
-                            onChange={(e) => setCardInfo({ ...cardInfo, "validTo": e.target.value })}
-                            pattern='\d\d/\d\d'
-                            placeholder="📅 MM / YY"
-                            required
-                        ></input>
-                    </div>
-
-                    <div className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}>
-                        <label htmlFor="cvc">CVC kod</label>
-                        <input
-                            id="cvc"
-                            type="number"
-                            name="cvc"
-                            value={cardInfo.CVC}
-                            onChange={(e) => setCardInfo({ ...cardInfo, "CVC": e.target.value })}
-                            placeholder="🔒 CVC"
-                            pattern='\d{3}'
-                            required
-                        ></input>
-                    </div>
-
-                    <div className={`${styles.cardModalSections} ${styles.cardModalSectionName}`}>
-                        <label htmlFor="nameOnCard">Namn på kortet</label>
-                        <input
-                            id="nameOnCard"
-                            type="text"
-                            name="nameOnCard"
-                            value={cardInfo.nameOnCard}
-                            onChange={(e) => setCardInfo({ ...cardInfo, "nameOnCard": e.target.value })}
-                            placeholder="🧟 Anna Andersson"
-                            pattern='[a-z A-Z-]+'
-                            required
-                        ></input>
-                    </div>
-
-                    <div className={styles.cardModalBottomSection}>
-                        <button type="submit" aria-label="Lägg till kort">Lägg till kort</button>
-                        <p>🔒 Your transaction is secured with SSL encryption</p>
-                    </div>
-                </form >
-            </div >
-        </>
-    );
+          <div className={styles.cardModalBottomSection}>
+            <button type="submit" aria-label="Lägg till kort">
+              Lägg till kort
+            </button>
+            <p>🔒 Your transaction is secured with SSL encryption</p>
+          </div>
+        </form>
+      </div>
+    </>
+  );
 }

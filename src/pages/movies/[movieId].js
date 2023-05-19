@@ -53,45 +53,47 @@ const Movie = ({
   length
 }) => {
   const [posted, setPosted] = useState(false);
-  const showtimesList = showtimes.map((showtime) => {
-    const date = new Date(showtime.date);
-    return (
-      <li key={Math.random() * 34231213}>
-        {date
-          .toLocaleDateString("sv-SE", {
-            weekday: "short",
-            day: "numeric",
-            month: "short"
-          })
-          .toUpperCase()}
-        <br />{" "}
-        {date.toLocaleTimeString("sv-SE", {
-          hour: "numeric",
-          minute: "numeric"
-        })}{" "}
-        <span>
-          {showtime.salong}
-          <br /> {length} min
-        </span>
-        <Link
-          href={{
-            pathname: "/booking",
-            query: {
-              showtimeId: showtime["_id"],
-              showtimeSalong: showtime.salong,
-              showtimeDate: showtime.date,
-              title: title,
-              poster: imageURL,
-              length: length
-            }
-          }}
-          as="/booking"
-        >
-          <button className={styles["movie-tickets"]}>Biljetter</button>
-        </Link>
-      </li>
-    );
-  });
+  const showtimesList = showtimes
+    .map((showtime) => {
+      const date = new Date(showtime.date);
+      return (
+        <li key={Math.random() * 34231213}>
+          {date
+            .toLocaleDateString("sv-SE", {
+              weekday: "short",
+              day: "numeric",
+              month: "short"
+            })
+            .toUpperCase()}
+          <br />{" "}
+          {date.toLocaleTimeString("sv-SE", {
+            hour: "numeric",
+            minute: "numeric"
+          })}{" "}
+          <span>
+            {showtime.salong}
+            <br /> {length} min
+          </span>
+          <Link
+            href={{
+              pathname: "/booking",
+              query: {
+                showtimeId: showtime["_id"],
+                showtimeSalong: showtime.salong,
+                showtimeDate: showtime.date,
+                title: title,
+                poster: imageURL,
+                length: length
+              }
+            }}
+            as="/booking"
+          >
+            <button className={styles["movie-tickets"]}>Biljetter</button>
+          </Link>
+        </li>
+      );
+    })
+    .slice(0, 10);
 
   return (
     <>

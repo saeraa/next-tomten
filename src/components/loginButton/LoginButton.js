@@ -63,7 +63,7 @@ const LoginButton = (props) => {
   ) : (
     <button
       data-testid="logInButton"
-      className={styles.logInButton}
+      className={styles.loggedInButton}
       onClick={props.setShowLogInModal}
     >
       LOGGA IN / REGISTRERA DIG

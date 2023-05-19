@@ -87,6 +87,16 @@
     border: 3px solid black;
     background-color: $c-red-dark;
 
+    + .loggedInButton {
+      display: none;
+    }
+
+    + div {
+      .logOutButton {
+        display: none;
+      }
+    }
+
     position: fixed;
     top: 0;
     bottom: 0;
@@ -504,6 +514,9 @@
   position: absolute;
   right: 30px;
   top: 90px;
+  @media (max-width: $bp-small) {
+    top: 145px;
+  }
 }
 
 .largeScreen {

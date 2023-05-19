@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-// In production, the .env file should obviously not be in the git repo, but given this is a school project this will do :)
-
 const MONGODB_URI = process.env.MONGODB_URI;
 
 /**

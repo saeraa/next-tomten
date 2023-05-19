@@ -19,8 +19,9 @@ const Navbar = ({
   setIsLoggedIn,
   setDisplayPopup,
   setPopupTitle,
-  setPopupMessage
-}) => {
+  </>  setPopupMessage
+}) =>
+{
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -51,20 +52,71 @@ const Navbar = ({
             <ul
               className={`${styles.headerList} ${openNav ? styles.open : null}`}
             >
-              <NavItem active={activeIdx === idx} {...menu} />
-            </div>
-          ))}
-        </div>
-        <LoginButton
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          setShowLogInModal={setShowLogInModal}
-          setProfileShow={setProfileShow}
-          setDisplayPopup={setDisplayPopup}
-          setPopupTitle={setPopupTitle}
-          setPopupMessage={setPopupMessage}
-        />
-      </nav>
+              {MENU_LIST.map((menu, idx) => (
+                <li
+                  className={styles.headerListItem}
+                  onClick={() =>
+                  {
+                    setActiveIdx(idx);
+                    setNavActive(false);
+                    setOpenNav(false);
+                  }}
+                  key={menu.text}
+                >
+                  <NavItem active={activeIdx === idx} {...menu} />
+                </li>
+              ))}
+              <li className={styles.headerListItem}>
+                <a href="https://www.facebook.com" target="_blank">
+                  <Image src={facebook} alt="Facebook" />
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                  <Image src={instagram} alt="Instagram" />
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                  <Image src={twitter} alt="Twitter" />
+                </a>
+              </li>
+              <li>
+                <div className={styles.searchBx}>
+                  <div className={styles.search}>
+                    <input
+                      className={showSearchBox ? styles.open : null}
+                      type="text"
+                      placeholder="Sök film..."
+                      id={styles.search}
+                      data-search
+                    />
+                    <i
+                      onClick={() =>
+                      {
+                        setShowSearchBox(!showSearchBox);
+                      }}
+                      className="material-symbols-outlined"
+                      id={styles.searchIcon}
+                    >
+                      search
+                    </i>
+                    <div
+                      className={styles.searchBx2}
+                      id={styles.moviesFilter}
+                    ></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <LoginButton
+              setIsLoggedIn={setIsLoggedIn}
+              setShowLogInModal={setShowLogInModal}
+              setProfileShow={setProfileShow}
+              setDisplayPopup={setDisplayPopup}
+              setPopupTitle={setPopupTitle}
+              setPopupMessage={setPopupMessage}
+            />
+          </div>
+          <button className={`${styles.logInButton} ${styles.smallScreen}`} onClick={setShowLogInModal}>Logga in</button>
+        </nav>
+      </header>
     </>
   );
 };

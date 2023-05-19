@@ -1,4 +1,4 @@
-import styles from "@/styles/navBar.module.scss";
+import styles from "@/styles/header.module.scss";
 import logoutUser from "@/utils/logoutUser";
 import { useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
@@ -63,7 +63,7 @@ const LoginButton = (props) => {
   ) : (
     <button
       data-testid="logInButton"
-      className={styles.logInButton}
+      className={styles.loggedInButton}
       onClick={props.setShowLogInModal}
     >
       LOGGA IN / REGISTRERA DIG

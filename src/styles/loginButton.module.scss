@@ -15,20 +15,29 @@
   }
 }
 
-.logInButton {
+.loggedInButton {
   cursor: pointer;
+  position: relative;
+  top: 1em;
   border: none;
   background-color: transparent;
   font-weight: 800;
   padding: 0 0.25em;
+
   &:hover {
     color: $c-red-light;
+  }
+  @media (max-width: 1000px) {
+    top: 0;
+    bottom: 0.25em;
+    left: 0.25em;
   }
 }
 .logOut {
   .logOutButton {
     cursor: pointer;
     font-size: 1em;
+    position: relative;
     color: $c-red-light;
     border: none;
     outline: none;
@@ -37,6 +46,7 @@
     font-weight: bold;
     margin: 0;
     padding-bottom: 0.25em;
+
     @media (min-width: $bp-medium) {
       &:hover + div {
         display: block !important;

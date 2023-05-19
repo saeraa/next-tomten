@@ -21,7 +21,15 @@ async function sendCardInfo(userName, cardInfo)
 export default function CardModal2({ showCardModal, handleCloseCardModal, handleCard })
 {
     const [cardInfo, setCardInfo] = useState({ "cardNr": '', "validTo": '', "CVC": '', "nameOnCard": '' })
-    const { isLoggedIn, setIsLoggedIn, username, setUsername } = useContext(LoggedInContext);
+    const {
+        isLoggedIn,
+        setIsLoggedIn,
+        username,
+        setUsername,
+        setDisplayPopup,
+        setPopupTitle,
+        setPopupMessage
+    } = useContext(LoggedInContext);
 
 
     if (!showCardModal)
@@ -32,7 +40,11 @@ export default function CardModal2({ showCardModal, handleCloseCardModal, handle
             <div className={styles.cardModalOverlay} onClick={handleCloseCardModal} />
 
             <div className={styles.cardModalContainer}>
-                <button className={styles.closeBtn} onClick={handleCloseCardModal}>X</button>
+                <button
+                    className={styles.closeBtn}
+                    onClick={handleCloseCardModal}
+                    aria-label="Stäng modalen knapp"
+                >X</button>
 
                 <form className={styles.cardModalForm} onSubmit={(ev) =>
                 {
@@ -46,28 +58,62 @@ export default function CardModal2({ showCardModal, handleCloseCardModal, handle
                 }}>
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionCard}`}>
                         <label htmlFor="cardNumber">Kortnummer</label>
-                        <input id="cardNumber" type="tel" name="cardNumber" value={cardInfo.cardNr} onChange={(e) => setCardInfo({ ...cardInfo, "cardNr": e.target.value })}
+                        <input
+                            id="cardNumber"
+                            type="tel"
+                            name="cardNumber"
+                            value={cardInfo.cardNr}
+                            onChange={(e) => setCardInfo({ ...cardInfo, "cardNr": e.target.value })}
                             pattern='[\d| ]{16,22}'
-                            maxLength='19' placeholder="💳 0000 0000 0000 0000" required></input>
+                            maxLength='19' placeholder="💳 0000 0000 0000 0000"
+                            required
+                        ></input>
                     </div>
 
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}>
                         <label htmlFor="validTo">Giltig t.o.m</label>
-                        <input id="validTo" type="tel" name="validTo" value={cardInfo.validTo} onChange={(e) => setCardInfo({ ...cardInfo, "validTo": e.target.value })} pattern='\d\d/\d\d' placeholder="📅 MM / YY" required></input>
+                        <input
+                            id="validTo"
+                            type="tel"
+                            name="validTo"
+                            value={cardInfo.validTo}
+                            onChange={(e) => setCardInfo({ ...cardInfo, "validTo": e.target.value })}
+                            pattern='\d\d/\d\d'
+                            placeholder="📅 MM / YY"
+                            required
+                        ></input>
                     </div>
 
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionCVC}`}>
                         <label htmlFor="cvc">CVC kod</label>
-                        <input id="cvc" type="number" name="cvc" value={cardInfo.CVC} onChange={(e) => setCardInfo({ ...cardInfo, "CVC": e.target.value })} placeholder="🔒 CVC" pattern='\d{3}' required></input>
+                        <input
+                            id="cvc"
+                            type="number"
+                            name="cvc"
+                            value={cardInfo.CVC}
+                            onChange={(e) => setCardInfo({ ...cardInfo, "CVC": e.target.value })}
+                            placeholder="🔒 CVC"
+                            pattern='\d{3}'
+                            required
+                        ></input>
                     </div>
 
                     <div className={`${styles.cardModalSections} ${styles.cardModalSectionName}`}>
                         <label htmlFor="nameOnCard">Namn på kortet</label>
-                        <input id="nameOnCard" type="text" name="nameOnCard" value={cardInfo.nameOnCard} onChange={(e) => setCardInfo({ ...cardInfo, "nameOnCard": e.target.value })} placeholder="🧟 Anna Andersson" pattern='[a-z A-Z-]+' required></input>
+                        <input
+                            id="nameOnCard"
+                            type="text"
+                            name="nameOnCard"
+                            value={cardInfo.nameOnCard}
+                            onChange={(e) => setCardInfo({ ...cardInfo, "nameOnCard": e.target.value })}
+                            placeholder="🧟 Anna Andersson"
+                            pattern='[a-z A-Z-]+'
+                            required
+                        ></input>
                     </div>
 
                     <div className={styles.cardModalBottomSection}>
-                        <button type="submit">Lägg till kort</button>
+                        <button type="submit" aria-label="Lägg till kort">Lägg till kort</button>
                         <p>🔒 Your transaction is secured with SSL encryption</p>
                     </div>
                 </form >

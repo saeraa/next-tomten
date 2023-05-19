@@ -16,7 +16,12 @@ async function sendCardInfo(userName, cardInfo)
             "paymentMethods": cardInfo
         })
     })
+    const data = await resp.json();
+
+    return data;
 }
+
+
 
 export default function CardModal2({ showCardModal, handleCloseCardModal, handleCard })
 {
@@ -30,7 +35,6 @@ export default function CardModal2({ showCardModal, handleCloseCardModal, handle
         setPopupTitle,
         setPopupMessage
     } = useContext(LoggedInContext);
-
 
     if (!showCardModal)
         return null;
@@ -52,7 +56,21 @@ export default function CardModal2({ showCardModal, handleCloseCardModal, handle
                     handleCard(cardInfo);
 
                     if (isLoggedIn)
-                        sendCardInfo(username, cardInfo);
+                    {
+                        const resp = sendCardInfo(username, cardInfo);
+                        if (resp)
+                        {
+                            setPopupTitle("Kort");
+                            setPopupMessage("Ditt kort är tillagt!");
+                            setDisplayPopup(true);
+                        } else
+                        {
+                            setPopupTitle("Kort");
+                            setPopupMessage("Det blev fel, försök igen!");
+                            setDisplayPopup(true)
+                        }
+                    }
+
 
                     handleCloseCardModal();
                 }}>

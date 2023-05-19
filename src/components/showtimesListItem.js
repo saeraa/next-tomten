@@ -13,7 +13,7 @@ const showtimesListItem = ({ showtime, movies }) => {
             query: {
               showtimeId: showtime["_id"],
               showtimeSalong: showtime.salong,
-              showtimeDate: showtime.date,
+              showtimeDate: showtime.time,
               title: movieName,
               poster: image,
               length: length

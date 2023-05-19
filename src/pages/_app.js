@@ -44,7 +44,8 @@ export default function App({ Component, pageProps }) {
         setUsername,
         setDisplayPopup,
         setPopupTitle,
-        setPopupMessage
+        setPopupMessage,
+        handleShowLogInModal
       }}
     >
       <>

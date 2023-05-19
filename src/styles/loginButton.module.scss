@@ -35,9 +35,11 @@
     color: $c-red-light;
     border: none;
     outline: none;
+    margin-right: 1em;
     font-family: inherit;
     background-color: inherit;
     font-weight: bold;
+    height: 1em;
     margin: 0;
     padding-bottom: 0.25em;
     @media (min-width: $bp-medium) {

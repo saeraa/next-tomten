@@ -22,6 +22,7 @@
   text-align: center;
   span {
     font-weight: bold;
+    cursor: pointer;
   }
 }
 
@@ -117,22 +118,6 @@
               background-image: url("../../public/review/hat-fill.png");
             }
           }
-
-          /* label:not(:first-child) {
-            background-size: 100%;
-            background-image: url("../../public/review/hat-nofill.png");
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            position: relative;
-            &:hover {
-              cursor: pointer;
-              background-image: url("../../public/review/hat-fill.png");
-            }
-            &:hover ~ label {
-              background-image: url("../../public/review/hat-fill.png");
-            }
-          }*/
         }
         .hatFilled {
           background-image: url("../../public/review/hat-fill.png") !important;
@@ -150,6 +135,7 @@
   font-size: 1.5em;
   font-style: italic;
   span {
+    cursor: pointer;
     font-weight: bold;
   }
 }

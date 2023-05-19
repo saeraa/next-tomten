@@ -1,10 +1,18 @@
 import { Review } from "./Review";
 import { useState, useEffect } from "react";
 import styles from "@/styles/reviews.module.scss";
+import { useContext } from "react";
+import { LoggedInContext } from "@/pages/_app";
 
 export const Reviews = (props) => {
+  const { handleShowLogInModal, isLoggedIn } = useContext(LoggedInContext);
   const [reviews, setReviews] = useState([]);
   const [once, setOnce] = useState(false);
+
+  const handleLogin = () => {
+    window.scrollTo(0, 0);
+    handleShowLogInModal();
+  };
   if (props.posted && once == true) {
     setOnce(false);
   }
@@ -38,10 +46,17 @@ export const Reviews = (props) => {
   });
 
   return reviews.length == 0 ? (
-    <p className={styles.noReviews} key={Math.random() * 34231213}>
-      Tyvärr så finns det inga recensioner att visa. <br></br>
-      <span>Logga in</span> och var den första som skriver
-    </p>
+    isLoggedIn ? (
+      <p className={styles.noReviews} key={Math.random() * 34231213}>
+        Tyvärr så finns det inga recensioner att visa.
+      </p>
+    ) : (
+      <p className={styles.noReviews} key={Math.random() * 34231213}>
+        Tyvärr så finns det inga recensioner att visa. <br></br>
+        <span onClick={handleLogin}>Logga in</span> och var den första som
+        skriver
+      </p>
+    )
   ) : (
     <div className={styles.reviewsContainer}>{reviews}</div>
   );

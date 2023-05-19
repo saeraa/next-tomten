@@ -156,13 +156,11 @@ const Navbar = ({
                   </div>
                 </div>
               </li>
-              <li>
-                <LoginButton
-                  setShowLogInModal={setShowLogInModal}
-                  setProfileShow={setProfileShow}
-                />
-              </li>
             </ul>
+            <LoginButton
+              setShowLogInModal={setShowLogInModal}
+              setProfileShow={setProfileShow}
+            />
           </div>
         </nav>
       </header>

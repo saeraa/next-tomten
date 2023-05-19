@@ -14,7 +14,8 @@ const WriteReviewButton = (props) => {
     username,
     setDisplayPopup,
     setPopupMessage,
-    setPopupTitle
+    setPopupTitle,
+    handleShowLogInModal
   } = useContext(LoggedInContext);
   const commentRef = useRef(null);
 
@@ -124,7 +125,8 @@ const WriteReviewButton = (props) => {
     )
   ) : (
     <p className={styles.loginFirst}>
-      För att skriva en recension behöver du <span>logga in</span> först!
+      För att skriva en recension behöver du{" "}
+      <span onClick={handleShowLogInModal}>logga in</span> först!
     </p>
   );
 };

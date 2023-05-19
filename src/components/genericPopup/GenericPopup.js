@@ -18,10 +18,7 @@ const GenericPopup = ({
     }
   };
 
-  let smiley = false;
-  if (popupTitle.includes("Tack för denna gång")) {
-    smiley = true;
-  }
+  let smiley = popupTitle.includes("Tack för denna gång") ? true : false;
 
   return (
     <div onClick={handleClose} className={styles.container}>

@@ -13,6 +13,7 @@ const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
   } = useContext(LoggedInContext);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+
   const clickHandler = async (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;

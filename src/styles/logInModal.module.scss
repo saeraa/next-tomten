@@ -10,7 +10,8 @@
 
 .logInModal {
   background-color: $c-gray-light;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,20 +20,25 @@
   max-width: 950px;
   max-height: 700px;
   padding: 3rem 1rem;
+  z-index: 101;
   @media (min-width: $bp-small) {
     padding: 5rem 5rem;
   }
   @media (min-width: $bp-medium) {
     padding: 6rem 10rem;
-    h2, .logInModalLink {
+    h2,
+    .logInModalLink {
       font-size: 1rem;
     }
   }
-  input,a,form {
+  input,
+  a,
+  form {
     display: block;
     margin: 0;
   }
-  h2, .logInModalLink {
+  h2,
+  .logInModalLink {
     display: inline-block;
     font-size: 0.75rem;
     margin: 0;
@@ -57,7 +63,9 @@
     padding: 0.5rem;
     margin-top: 1rem;
   }
-  .forgotPasswordLink, .continueButton, .backLink:hover {
+  .forgotPasswordLink,
+  .continueButton,
+  .backLink:hover {
     cursor: pointer;
   }
   .forgotPasswordLink {

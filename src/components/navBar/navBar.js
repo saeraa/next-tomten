@@ -66,7 +66,8 @@ const SUB_MENU_LIST = [
   }
 ];
 
-const Navbar = () => {
+const Navbar = ({ setShowLogInModal }) =>
+{
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -85,14 +86,14 @@ const Navbar = () => {
           />
         </Link>
         <button
-          onClick={() => {
+          onClick={() =>
+          {
             setOpenNav(!openNav);
           }}
-          className={`${styles.headerListToggle} ${
-            openNav ? styles.open : null
-          }`}
+          className={`${styles.headerListToggle} ${openNav ? styles.open : null
+            }`}
         ></button>
-        
+
         <nav>
           <div onClick={() => setNavActive(!navActive)}>
             <ul
@@ -101,7 +102,8 @@ const Navbar = () => {
               {MENU_LIST.map((menu, idx) => (
                 <li
                   className={styles.headerListItem}
-                  onClick={() => {
+                  onClick={() =>
+                  {
                     setActiveIdx(idx);
                     setNavActive(false);
                     setOpenNav(false);
@@ -133,7 +135,8 @@ const Navbar = () => {
                       data-search
                     />
                     <i
-                      onClick={() => {
+                      onClick={() =>
+                      {
                         setShowSearchBox(!showSearchBox);
                       }}
                       className="material-symbols-outlined"
@@ -149,16 +152,16 @@ const Navbar = () => {
                 </div>
               </li>
               <li>
-              <button className={`${styles.logInButton} ${styles.largeScreen}`} onClick={setShowLogInModal}>Logga in</button>
+                <button className={`${styles.logInButton} ${styles.largeScreen}`} onClick={setShowLogInModal}>Logga in</button>
               </li>
             </ul>
           </div>
           <button className={`${styles.logInButton} ${styles.smallScreen}`} onClick={setShowLogInModal}>Logga in</button>
-      </nav>
+        </nav>
       </header>
       <nav className={styles.subNav}>
-          <MenuDropDown itemList={SUB_MENU_LIST} />
-        </nav>
+        <MenuDropDown itemList={SUB_MENU_LIST} />
+      </nav>
     </>
   );
 };

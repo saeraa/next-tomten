@@ -8,6 +8,8 @@ import logo from "../../../public/logoWithText.svg";
 import facebook from "../../../public/facebook.png";
 import instagram from "../../../public/instagram.png";
 import twitter from "../../../public/twitter.png";
+import LoginButton from "../loginButton/LoginButton";
+
 
 const MENU_LIST = [
   { text: "Öppettider & Kontakt", href: "/" },
@@ -66,8 +68,14 @@ const SUB_MENU_LIST = [
   }
 ];
 
-const Navbar = ({ setShowLogInModal }) =>
-{
+const Navbar = ({
+  setShowLogInModal,
+  setProfileShow,
+  setIsLoggedIn,
+  setDisplayPopup,
+  setPopupTitle,
+  setPopupMessage
+}) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -161,6 +169,18 @@ const Navbar = ({ setShowLogInModal }) =>
       </header>
       <nav className={styles.subNav}>
         <MenuDropDown itemList={SUB_MENU_LIST} />
+              <NavItem active={activeIdx === idx} {...menu} />
+            </div>
+          ))}
+        </div>
+        <LoginButton
+          setIsLoggedIn={setIsLoggedIn}
+          setShowLogInModal={setShowLogInModal}
+          setProfileShow={setProfileShow}
+          setDisplayPopup={setDisplayPopup}
+          setPopupTitle={setPopupTitle}
+          setPopupMessage={setPopupMessage}
+        />
       </nav>
     </>
   );

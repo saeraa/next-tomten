@@ -1,0 +1,73 @@
+@mixin logout-content {
+  background-color: $c-gray-light;
+  position: absolute;
+  margin: 0 0.25em;
+  min-width: 175px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  a {
+    margin-inline: auto;
+    display: block;
+    width: fit-content;
+    padding: 0.25em 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.loggedInButton {
+  cursor: pointer;
+  position: relative;
+  top: 1em;
+  border: none;
+  background-color: transparent;
+  font-weight: 800;
+  padding: 0 0.25em;
+
+  &:hover {
+    color: $c-red-light;
+  }
+  @media (max-width: 1000px) {
+    top: 0;
+    bottom: 0.25em;
+    left: 0.25em;
+  }
+}
+.logOut {
+  .logOutButton {
+    cursor: pointer;
+    font-size: 1em;
+    position: relative;
+    color: $c-red-light;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    background-color: inherit;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 0.25em;
+
+    @media (min-width: $bp-medium) {
+      &:hover + div {
+        display: block !important;
+      }
+    }
+    .username {
+      color: $c-blue-dark;
+    }
+
+    i:first-child {
+      padding: 0 0.25em;
+    }
+  }
+
+  .logoutContent {
+    @include logout-content;
+    display: none;
+    @media (min-width: $bp-medium) {
+      &:hover {
+        display: block !important;
+      }
+    }
+  }
+}

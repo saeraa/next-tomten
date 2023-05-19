@@ -75,7 +75,8 @@ const Navbar = ({
   setDisplayPopup,
   setPopupTitle,
   setPopupMessage
-}) => {
+}) =>
+{
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
 
@@ -159,29 +160,19 @@ const Navbar = ({
                   </div>
                 </div>
               </li>
-              <li>
-                <button className={`${styles.logInButton} ${styles.largeScreen}`} onClick={setShowLogInModal}>Logga in</button>
-              </li>
             </ul>
+            <LoginButton
+              setIsLoggedIn={setIsLoggedIn}
+              setShowLogInModal={setShowLogInModal}
+              setProfileShow={setProfileShow}
+              setDisplayPopup={setDisplayPopup}
+              setPopupTitle={setPopupTitle}
+              setPopupMessage={setPopupMessage}
+            />
           </div>
           <button className={`${styles.logInButton} ${styles.smallScreen}`} onClick={setShowLogInModal}>Logga in</button>
         </nav>
       </header>
-      <nav className={styles.subNav}>
-        <MenuDropDown itemList={SUB_MENU_LIST} />
-              <NavItem active={activeIdx === idx} {...menu} />
-            </div>
-          ))}
-        </div>
-        <LoginButton
-          setIsLoggedIn={setIsLoggedIn}
-          setShowLogInModal={setShowLogInModal}
-          setProfileShow={setProfileShow}
-          setDisplayPopup={setDisplayPopup}
-          setPopupTitle={setPopupTitle}
-          setPopupMessage={setPopupMessage}
-        />
-      </nav>
     </>
   );
 };

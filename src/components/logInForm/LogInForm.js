@@ -21,17 +21,23 @@ const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
-    let login = await loginUser(username, password);
-    if (login == true) {
-      handleShowLogInModal();
-      setIsLoggedIn(true);
-      setUsername(username);
-      setPopupTitle("Nu är du inloggad");
-      setPopupMessage("Välkommen tillbaka, " + username);
+    if (username.length > 0 && username != " " && password.length > 0) {
+      let login = await loginUser(username, password);
+      if (login == true) {
+        handleShowLogInModal();
+        setIsLoggedIn(true);
+        setUsername(username);
+        setPopupTitle("Nu är du inloggad");
+        setPopupMessage("Välkommen tillbaka, " + username);
+        setFromReview(false);
+      } else {
+        //kommer in hit ifall användaren inte finns eller lösenordet är fel.
+        setPopupTitle("Woops! Något gick fel!");
+        setPopupMessage(login);
+      }
     } else {
-      //kommer in hit ifall användaren inte finns eller lösenordet är fel.
-      setPopupTitle("Woops! Något gick fel!");
-      setPopupMessage(login);
+      setPopupTitle("Ogiltiga uppgifter");
+      setPopupMessage("Vänligen skriv in korrekta uppgiter.");
     }
     setDisplayPopup(true);
   };

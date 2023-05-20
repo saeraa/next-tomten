@@ -60,31 +60,39 @@ const WriteReviewButton = (props) => {
   };
 
   const postReview = async () => {
-    setActive(false);
-    setRating(0);
-    const review = {
-      author: username,
-      rating: rating,
-      comment: commentRef.current.value,
-      movieId: window.location.pathname.split("/")[2]
-    };
-    const resp = await fetch("/api/reviews", {
-      method: "POST",
-      headers: {
-        Cookie: getCookie("session"),
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(review)
-    });
-    if (resp.status == 201) {
-      setPosted(true);
-      props.setPosted(true);
+    if (rating == 0) {
       setDisplayPopup(true);
-      setPopupTitle("Din recension är nu inskickad, " + username + "!");
+      setPopupTitle("Inget betyg!");
       setPopupMessage(
-        "Tack för att du tog dig tid och skrev en recension. Det hjälper våra besökare, samt gör tomten glad!"
+        "Vänligen sätt ett betyg innan du skickar in din recension!"
       );
+    } else {
+      setActive(false);
+      setRating(0);
+      const review = {
+        author: username,
+        rating: rating,
+        comment: commentRef.current.value,
+        movieId: window.location.pathname.split("/")[2]
+      };
+      const resp = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          Cookie: getCookie("session"),
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(review)
+      });
+      if (resp.status == 201) {
+        setPosted(true);
+        props.setPosted(true);
+        setDisplayPopup(true);
+        setPopupTitle("Din recension är nu inskickad, " + username + "!");
+        setPopupMessage(
+          "Tack för att du tog dig tid och skrev en recension. Det hjälper våra besökare, samt gör tomten glad!"
+        );
+      }
     }
   };
 

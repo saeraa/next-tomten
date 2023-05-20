@@ -8,11 +8,11 @@
   z-index: 300;
   .popup {
     text-align: center;
-    margin-inline: auto;
     background-color: $c-gray-dark;
-    position: relative;
+    position: fixed;
     z-index: 200;
     top: 25vh;
+    left: 30vw;
     padding: 4em 8em;
     width: fit-content;
     height: fit-content;
@@ -22,6 +22,7 @@
     border: 3px solid rgb(88, 86, 86);
     border-radius: 1em;
     @media (max-width: $bp-medium) {
+      left: 2.5%;
       padding: 2em 2em;
       padding-bottom: 3em;
       width: 95%;

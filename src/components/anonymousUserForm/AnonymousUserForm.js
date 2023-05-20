@@ -5,22 +5,34 @@ import { LoggedInContext } from "@/pages/_app";
 
 const AnonymousUserForm = ({ setToLogin }) => {
   const emailRef = useRef(null);
-  const { setDisplayPopup, setPopupMessage, setPopupTitle } =
-    useContext(LoggedInContext);
+  const {
+    setDisplayPopup,
+    setPopupMessage,
+    setPopupTitle,
+    handleShowLogInModal
+  } = useContext(LoggedInContext);
 
   const handleClick = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
-    if (await continueAsGuest(emailRef.current.value)) {
-      setPopupTitle("Du bokar biljetter med e-postaddressen, " + email);
-      setPopupMessage(
-        "Till nästa gång kan du fundera på att skapa ett konto hos oss istället. Som medlem sparar du tid vid bokning samt får exklusiva nyheter och erbjudanden skickade till din e-post."
-      );
+    if (email.includes("@") && email.length > 1) {
+      if (await continueAsGuest(emailRef.current.value)) {
+        setToLogin();
+        handleShowLogInModal();
+        setPopupTitle("Du bokar biljetter med e-postaddressen, " + email);
+        setPopupMessage(
+          "Till nästa gång kan du fundera på att skapa ett konto hos oss istället. Som medlem sparar du tid vid bokning samt får exklusiva nyheter och erbjudanden skickade till din e-post."
+        );
+      } else {
+        setPopupTitle("Något gick fel.");
+        setPopupMessage("Kom tillbaka lite senare och testa igen.");
+      }
     } else {
-      setPopupTitle("Något gick fel.");
-      setPopupMessage("Kom tillbaka lite senare och testa igen.");
+      setPopupTitle("Felaktig e-post!");
+      setPopupMessage(
+        "Vänligen skriv in en korrekt e-postadress och försök igen!"
+      );
     }
-    setToLogin();
     setDisplayPopup(true);
 
     /*

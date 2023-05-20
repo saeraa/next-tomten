@@ -15,7 +15,8 @@ const WriteReviewButton = (props) => {
     setDisplayPopup,
     setPopupMessage,
     setPopupTitle,
-    handleShowLogInModal
+    handleShowLogInModal,
+    setFromReview
   } = useContext(LoggedInContext);
   const commentRef = useRef(null);
 
@@ -51,6 +52,11 @@ const WriteReviewButton = (props) => {
       setRating(0);
       setActive(false);
     }
+  };
+
+  const loginToReview = () => {
+    setFromReview(true);
+    handleShowLogInModal();
   };
 
   const postReview = async () => {
@@ -126,7 +132,7 @@ const WriteReviewButton = (props) => {
   ) : (
     <p className={styles.loginFirst}>
       För att skriva en recension behöver du{" "}
-      <span onClick={handleShowLogInModal}>logga in</span> först!
+      <span onClick={loginToReview}>logga in</span> först!
     </p>
   );
 };

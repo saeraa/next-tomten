@@ -8,12 +8,7 @@ const GenericPopup = ({
 }) => {
   const handleClose = () => {
     setDisplayPopup(false);
-    if (
-      popupTitle.includes("Nu är du inloggad") ||
-      popupTitle.includes("Du bokar biljetter med e-posta")
-    ) {
-      setShowLogInModal(false);
-    } else if (popupTitle.includes("Din session har gått")) {
+    if (popupTitle.includes("Din session har gått")) {
       setShowLogInModal(true);
     }
   };

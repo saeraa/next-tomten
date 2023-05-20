@@ -1,4 +1,4 @@
-import { useState, createContext, use } from "react";
+import { useState, createContext } from "react";
 import "@/styles/globals.scss";
 import Navbar from "@/components/navBar/navBar";
 import Footer from "@/components/footer/footer";

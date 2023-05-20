@@ -28,7 +28,6 @@ const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
       setUsername(username);
       setPopupTitle("Nu är du inloggad");
       setPopupMessage("Välkommen tillbaka, " + username);
-      setFromReview(false);
     } else {
       //kommer in hit ifall användaren inte finns eller lösenordet är fel.
       setPopupTitle("Woops! Något gick fel!");

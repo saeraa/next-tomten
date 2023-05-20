@@ -7,7 +7,7 @@ const RegisterForm = ({ setToLogin, setToAnonymous }) => {
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const { setDisplayPopup, setPopupMessage, setPopupTitle } =
+  const { setDisplayPopup, setPopupMessage, setPopupTitle, fromReview } =
     useContext(LoggedInContext);
 
   const handleClick = async (e) => {
@@ -83,9 +83,11 @@ const RegisterForm = ({ setToLogin, setToAnonymous }) => {
           Registrera
         </button>
       </form>
-      <a onClick={setToAnonymous} className={styles.backLink}>
-        Fortsätt utan att logga in
-      </a>
+      {!fromReview && (
+        <a onClick={setToAnonymous} className={styles.backLink}>
+          Fortsätt utan att logga in
+        </a>
+      )}
     </>
   );
 };

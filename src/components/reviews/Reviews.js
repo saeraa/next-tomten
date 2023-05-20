@@ -5,12 +5,14 @@ import { useContext } from "react";
 import { LoggedInContext } from "@/pages/_app";
 
 export const Reviews = (props) => {
-  const { handleShowLogInModal, isLoggedIn } = useContext(LoggedInContext);
+  const { handleShowLogInModal, isLoggedIn, setFromReview } =
+    useContext(LoggedInContext);
   const [reviews, setReviews] = useState([]);
   const [once, setOnce] = useState(false);
 
   const handleLogin = () => {
     window.scrollTo(0, 0);
+    setFromReview(true);
     handleShowLogInModal();
   };
   if (props.posted && once == true) {

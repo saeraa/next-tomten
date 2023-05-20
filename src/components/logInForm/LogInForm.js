@@ -9,7 +9,10 @@ const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
     setPopupMessage,
     setPopupTitle,
     setIsLoggedIn,
-    setUsername
+    setUsername,
+    handleShowLogInModal,
+    fromReview,
+    setFromReview
   } = useContext(LoggedInContext);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -18,19 +21,27 @@ const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
-    let login = await loginUser(username, password);
-    if (login == true) {
-      setIsLoggedIn(true);
-      setUsername(username);
-      setPopupTitle("Nu är du inloggad");
-      setPopupMessage("Välkommen tillbaka, " + username);
+    if (username.length > 0 && username != " " && password.length > 0) {
+      let login = await loginUser(username, password);
+      if (login == true) {
+        handleShowLogInModal();
+        setIsLoggedIn(true);
+        setUsername(username);
+        setPopupTitle("Nu är du inloggad");
+        setPopupMessage("Välkommen tillbaka, " + username);
+        setFromReview(false);
+      } else {
+        //kommer in hit ifall användaren inte finns eller lösenordet är fel.
+        setPopupTitle("Woops! Något gick fel!");
+        setPopupMessage(login);
+      }
     } else {
-      //kommer in hit ifall användaren inte finns eller lösenordet är fel.
-      setPopupTitle("Woops! Något gick fel!");
-      setPopupMessage(login);
+      setPopupTitle("Ogiltiga uppgifter");
+      setPopupMessage("Vänligen skriv in korrekta uppgiter.");
     }
     setDisplayPopup(true);
   };
+
   return (
     <>
       <h2>Logga in</h2>
@@ -72,9 +83,11 @@ const LogInForm = ({ setToRegister, setToForgotPassword, setToAnonymous }) => {
           Logga in
         </button>
       </form>
-      <a onClick={setToAnonymous} className={styles.backLink}>
-        Fortsätt utan att logga in
-      </a>
+      {!fromReview && (
+        <a onClick={setToAnonymous} className={styles.backLink}>
+          Fortsätt utan att logga in
+        </a>
+      )}
     </>
   );
 };

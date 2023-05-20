@@ -16,15 +16,26 @@ const RegisterForm = ({ setToLogin, setToAnonymous }) => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    let gotRegistered = await registerUser(username, email, password);
-    if (gotRegistered == true) {
-      setPopupTitle("Ny användare skapad");
-      setPopupMessage("Välkommen till gänget, " + username);
-      setToLogin();
+    if (
+      username.length > 0 &&
+      username != " " &&
+      email.includes("@") &&
+      email.length > 1 &&
+      password.length > 1
+    ) {
+      let gotRegistered = await registerUser(username, email, password);
+      if (gotRegistered == true) {
+        setPopupTitle("Ny användare skapad");
+        setPopupMessage("Välkommen till gänget, " + username);
+        setToLogin();
+      } else {
+        setPopupTitle("Woops, något gick fel");
+        setPopupMessage(gotRegistered);
+        //Här kommer meddelandet om upptaget användarnamn eller mail
+      }
     } else {
-      setPopupTitle("Woops, något gick fel");
-      setPopupMessage(gotRegistered);
-      //Här kommer meddelandet om upptaget användarnamn eller mail
+      setPopupTitle("Ogiltiga uppgifter");
+      setPopupMessage("Vänligen skriv in korrekta uppgiter.");
     }
     setDisplayPopup(true);
   };

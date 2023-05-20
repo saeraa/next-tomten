@@ -12,8 +12,12 @@ export const LoggedInContext = createContext("UserData");
 export default function App({ Component, pageProps }) {
   const [showLogInModal, setShowLogInModal] = useState(false);
   const handleShowLogInModal = () => {
+    if (fromReview === true) {
+      setFromReview(false);
+    }
     setShowLogInModal(!showLogInModal);
   };
+  const [fromReview, setFromReview] = useState(false);
   const [formToShow, setFormToShow] = useState("login");
   const [profileIsShown, setProfileShow] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,7 +49,9 @@ export default function App({ Component, pageProps }) {
         setDisplayPopup,
         setPopupTitle,
         setPopupMessage,
-        handleShowLogInModal
+        handleShowLogInModal,
+        fromReview,
+        setFromReview
       }}
     >
       <>

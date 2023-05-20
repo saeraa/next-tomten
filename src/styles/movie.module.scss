@@ -81,6 +81,9 @@
   .first-row {
     grid-column: 1;
     grid-row: 1;
+    @media (max-width: $bp-medium) {
+      text-align: center;
+    }
     .movie-poster {
       aspect-ratio: 10/16;
       object-fit: cover;
